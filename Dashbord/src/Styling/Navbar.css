@@ -1,0 +1,41 @@
+.navbar {
+    display: grid;
+    grid-template-columns: auto repeat(8, 1fr) auto; 
+    align-items: center;
+    background-color: #5c646d;
+    padding: 0.5rem 0;
+    gap: 0.5rem; 
+  }
+  
+  .left-logo,
+  .right-logo {
+    padding: 0 1rem; /* Adjust padding for logos */
+  }
+  
+  .logo {
+    height: 50px;
+    display: block; /* Ensures the logo takes up the full space of its container */
+  }
+  
+  .nav-link {
+    text-align: center; /* Center text in the nav link columns */
+  }
+  
+  .nav-link a {
+    display: block; /* Make the links take up the full grid cell */
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav-link a:hover {
+    background-color: #0294A5;
+    color: #fff;
+  }
+  
+  .active {
+    background-color: #017080;
+    color: #fff;
+  }
+  

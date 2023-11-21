@@ -1,0 +1,27 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background-color: #dad9db;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use 100% of the viewport height */
+}
+
+.content {
+  flex: 1; /* This ensures that the content area can expand */
+  overflow-y: auto; /* Allows scrolling within the content area */
+  padding-bottom: 50px; /* Give some space for the footer */
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 10px;
+  width: 100%; /* Full width */
+  height: 210px; /* Set the height of your footer */
+  background-color: #f8f9fa; /* Example background color */
+  /* Add other styling for the footer */
+}

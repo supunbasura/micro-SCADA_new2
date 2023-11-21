@@ -1,0 +1,22 @@
+.footer {
+  width: 100%;
+  background-color: #f8f9fa; /* Example background color */
+  padding: 10px 0;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for depth */
+}
+
+.footer-table {
+  width: 100%; 
+  border-collapse: collapse; /* Remove space between borders */
+  margin: 0 auto; /* Centers the table in the footer */
+}
+
+.footer-table th, .footer-table td {
+  border: 1px solid #ddd; /* Excel-like grid lines */
+  text-align: left;
+  padding: 8px;
+}
+
+.footer-table th {
+  background-color: #e7e7e7; /* Header background */
+}
