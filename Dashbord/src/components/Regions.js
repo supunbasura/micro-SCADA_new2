@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SwitchOn from '../SVG/Switch_on.svg';
-import SwitchOff from '../SVG/Switch_Off.svg';
+import SwitchOn from '../SVG/Switch_On_new2.svg';
+import SwitchOff from '../SVG/Switch_Off_new2.svg';
 
 function Regions() {
     const [isSwitchedOn, setIsSwitchedOn] = useState("off");
@@ -58,27 +58,29 @@ function Regions() {
     }, []);
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-        <div>
-            {isSwitchedOn === "on" ? (
-                <img src={SwitchOn} alt="Switch On" />
-            ) : (
-                <img src={SwitchOff} alt="Switch Off" />
-            )}
-        </div>
-        <div onClick={handleToggle} style={{ 
-          marginLeft: '-430px', 
-          marginBottom: '50px', 
-          opacity: 0,
-          width: '150px', 
-          height: '100px', 
-          clip: 'rect(1px, 1px, 1px, 1px)', 
-          whiteSpace: 'nowrap'
-          }}>
-            <label style={{ cursor: 'pointer' }}>
-                {isSwitchedOn === "on" ? "Switch is ON" : "Switch is OFF"}
-            </label>
-        </div>
+      <div className="Regions" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+        <header className="Regions-header">
+            <div>
+                {isSwitchedOn === "on" ? (
+                    <img src={SwitchOn} alt="Switch On" />
+                ) : (
+                    <img src={SwitchOff} alt="Switch Off" />
+                )}
+            </div>
+            <div onClick={handleToggle} style={{ 
+            marginLeft: '350px', 
+            marginTop: '-247px', 
+            opacity: 0,
+            width: '100px', 
+            height: '90px', 
+            clip: 'rect(1px, 1px, 1px, 1px)', 
+            whiteSpace: 'nowrap'
+            }}>
+                <label style={{ cursor: 'pointer' }}>
+                    {isSwitchedOn === "on" ? "Switch is on" : "Switch is off"}
+                </label>
+            </div>
+        </header>
     </div>
     );
 }
