@@ -42,11 +42,12 @@ function Footer() {
             {lastBook && lastBook.length > 0 ? (
                 <table className="footer-table">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Status</th>
-                            <th>Received At</th>
-                        </tr>
+                    <tr>
+                        <th className="col-id">ID</th>
+                        <th className="col-status">Status</th>
+                        <th className="col-received-at">Received At</th>
+                        <th className="col-description">Description</th>
+                    </tr>
                     </thead>
                     <tbody>
                         {[...lastBook].reverse().map((book, index) => (
@@ -54,6 +55,7 @@ function Footer() {
                                 <td>{book.pk ?? 'No ID available'}</td>
                                 <td>{book.fields.status ?? 'No status available'}</td>
                                 <td>{book.fields.received_at ? new Date(book.fields.received_at).toLocaleString() : 'No date available'}</td>
+                                <td>{book.fields.description ?? 'No description available'}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -59,13 +59,16 @@ def on_message(client, userdata, message):
     with connection:
         try:
             book_data = json.loads(received_payload)
-            # Send book_data to frontend
+            
+            if 'description' not in book_data or book_data["description"] is None:
+                book_data["description"] = 'QA1 Switched On : Location-Katugasthota : Device-Mobile'
+            
             # Insert into the database
             insert_query = """
-                INSERT INTO kafka_app_book (status, received_at)
-                VALUES (%s, NOW());
+                INSERT INTO kafka_app_book (status, received_at, description)
+                VALUES (%s, NOW(), %s);
             """
-            cursor.execute(insert_query, (book_data["status"],))
+            cursor.execute(insert_query, (book_data["status"], book_data["description"]))
             connection.commit()
             print("Data saved to TimescaleDB.")
 

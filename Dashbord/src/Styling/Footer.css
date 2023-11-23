@@ -20,3 +20,7 @@
 .footer-table th {
   background-color: #e7e7e7; /* Header background */
 }
+.col-id { width: 100px; }
+.col-status { width: 100px; }
+.col-received-at { width: 100px; }
+.col-description { width: 250px; }

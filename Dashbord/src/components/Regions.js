@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import SwitchOn from '../SVG/Switch_On_new2.svg';
 import SwitchOff from '../SVG/Switch_Off_new2.svg';
 
+import SwitchVisible from '../SVG/isSwitchedVisible.svg';
+import SwitchOffVisible from '../SVG/isSwitchedOffVisible_new.svg';
+import SwitchOnVisible from '../SVG/isSwitchedOnVisible_new.svg';
+
 function Regions() {
     const [isSwitchedOn, setIsSwitchedOn] = useState("off");
     const [isToggling, setIsToggling] = useState(false);
@@ -60,22 +64,23 @@ function Regions() {
     return (
       <div className="Regions" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
         <header className="Regions-header">
+            <img src={SwitchVisible} alt="Switch visible" />
             <div>
                 {isSwitchedOn === "on" ? (
-                    <img src={SwitchOn} alt="Switch On" />
+                    <img src={SwitchOnVisible } alt="Switch on SVG" style={{ position: 'absolute' ,marginLeft: '404px', marginTop: '-272px'  }} />
                 ) : (
-                    <img src={SwitchOff} alt="Switch Off" />
+                    <img src={SwitchOffVisible} alt="Switch off SVG" style={{ position: 'absolute' ,marginLeft: '392px', marginTop: '-272px'  }} />
                 )}
             </div>
             <div onClick={handleToggle} style={{ 
-            marginLeft: '350px', 
-            marginTop: '-247px', 
-            opacity: 0,
-            width: '100px', 
-            height: '90px', 
-            clip: 'rect(1px, 1px, 1px, 1px)', 
-            whiteSpace: 'nowrap'
-            }}>
+                marginLeft: '350px', 
+                marginTop: '-247px', 
+                opacity: 0,
+                width: '100px', 
+                height: '90px', 
+                clip: 'rect(1px, 1px, 1px, 1px)', 
+                whiteSpace: 'nowrap'
+                }}>
                 <label style={{ cursor: 'pointer' }}>
                     {isSwitchedOn === "on" ? "Switch is on" : "Switch is off"}
                 </label>
