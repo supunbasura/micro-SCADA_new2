@@ -6,6 +6,10 @@ import SwitchVisible from '../SVG/isSwitchedVisible.svg';
 import SwitchOffVisible from '../SVG/isSwitchedOffVisible_new.svg';
 import SwitchOnVisible from '../SVG/isSwitchedOnVisible_new.svg';
 
+import DataList from './RegionAlartList'
+
+import '../Styling/Regions.css';
+
 function Regions() {
     const [isSwitchedOn, setIsSwitchedOn] = useState("off");
     const [isToggling, setIsToggling] = useState(false);
@@ -86,6 +90,9 @@ function Regions() {
                 </label>
             </div>
         </header>
+        <div className="DataList">
+            <DataList />
+        </div>
     </div>
     );
 }
