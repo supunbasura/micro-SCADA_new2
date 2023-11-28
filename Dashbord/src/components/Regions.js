@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SwitchOn from '../SVG/Switch_On_new2.svg';
 import SwitchOff from '../SVG/Switch_Off_new2.svg';
 
-import SwitchVisible from '../SVG/isSwitchedVisible.svg';
+import SwitchVisible from '../SVG/isSwitchedVisible_new.svg';
 import SwitchOffVisible from '../SVG/isSwitchedOffVisible_new.svg';
 import SwitchOnVisible from '../SVG/isSwitchedOnVisible_new.svg';
 
@@ -89,6 +89,7 @@ function Regions() {
                     {isSwitchedOn === "on" ? "Switch is on" : "Switch is off"}
                 </label>
             </div>
+
         </header>
         <div className="DataList">
             <DataList />

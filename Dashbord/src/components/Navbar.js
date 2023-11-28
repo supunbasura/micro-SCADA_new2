@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import '../Styling/Navbar.css';
 import companyLogo from '../Images/Company_logo.png';
 import CEBlogo from '../Images/CEB.png';
+// import Footer from './components/Footer';
 
 const Navbar = () => {
   return (
@@ -25,6 +26,7 @@ const Navbar = () => {
         <img src={companyLogo} alt="CEB Logo" className="logo" />
       </div>
     </nav>
+    
   );
 };
 

@@ -36,11 +36,10 @@ def kafka_consumer():
             'type': 'send_simple_message',
             'message': book_data
         })
-        
+    
     consumer.close()
     
 def start_kafka_consumer():
     thread = threading.Thread(target=kafka_consumer)
     thread.daemon = True
     thread.start()
-    

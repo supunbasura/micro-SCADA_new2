@@ -1,0 +1,87 @@
+/* General styles for the login container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* background-color: #f3f4f6; Light gray background */
+    /* height: 70%; */
+    /* width: 40%; */
+  }
+  
+  /* Styles for the login form */
+  .login-form {
+    padding: 100px; 
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow for depth */
+    border-radius: 10px; /* Slightly larger border radius */
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for the input group */
+  .input-group {
+    margin-bottom: 20px; /* Increased margin for better spacing */
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px; /* More padding for a better touch area */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded corners for the input fields */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+  }
+  
+  /* Styles for the remember me checkbox */
+  .input-remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Consistent margin */
+  }
+  
+  .input-remember input {
+    margin-right: 10px;
+  }
+  
+  /* Styles for the login button */
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a67ff; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .login-button:hover {
+    background-color: #3651f0; /* Darker shade for hover state */
+  }
+  
+  /* Styles for the login footer links */
+  .login-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-footer a {
+    color: #4a67ff;
+    text-decoration: none;
+    margin: 0 10px; /* Space between links */
+  }
+  
+  .login-footer a:hover {
+    text-decoration: underline;
+  }
+  

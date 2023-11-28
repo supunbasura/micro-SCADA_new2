@@ -12,6 +12,7 @@ function Footer() {
 
   const [data, setData] = useState([]);
   const [lastBook, setLastBook] = useState(null);
+  const [last_book_element, setLastElementBook] = useState(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -23,13 +24,15 @@ function Footer() {
                     const lastElement = parsedData.slice(-1)[0];
                     const lastFive = parsedData.slice(-5);
                     setLastBook(lastFive);
-                    console.log("Last Element:", lastFive);
+                    setLastElementBook(lastElement);
+                    console.log("Last book Element : ",lastElement);
+                    // console.log("Last Element:", lastFive);
                 } else {
                     console.log("No books received");
                 }
             })
             .catch(error => console.error("Error fetching data:", error));
-    }, 2000); // Refresh every 2000 
+    }, 2000);
 
     return () => clearInterval(intervalId); // Cleanup on unmount
 }, []);
