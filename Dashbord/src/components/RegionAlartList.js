@@ -28,9 +28,9 @@ const data = [
 
 const DataList = () => {
   return (
-    <div>
+    <div className="DataList-container">
       {data.map((item) => (
-        <div className="DataList-item" key={item.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+        <div className="DataList-item" key={item.id}>
           {/* <AlarmIcon style={{ marginRight: '10px' }} /> Alarm icon */}
           <span className="DataList-text">{item.message}</span>
         </div>
@@ -38,5 +38,6 @@ const DataList = () => {
     </div>
   );
 };
+
 
 export default DataList;

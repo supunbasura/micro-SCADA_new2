@@ -39,3 +39,17 @@
 .DataList-item.info {
     border-left: 4px solid green; /* Left border for informational messages */
 }
+
+.DataList-container {
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+}
+
+.DataList-item {
+    flex-basis: 50%; /* Each item takes up half the width */
+    /* display: flex; */
+    align-items: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding-right: 10px; /* Optional spacing between columns */
+}

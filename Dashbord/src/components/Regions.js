@@ -1,12 +1,16 @@
 
 import React, { useState, useEffect ,useContext} from 'react';
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import SwitchOn from '../SVG/Switch_On_new2.svg';
 import SwitchOff from '../SVG/Switch_Off_new2.svg';
 
 
-import SwitchVisible from '../SVG/isSwitchedVisible_new.svg';
-import SwitchOffVisible from '../SVG/isSwitchedOffVisible_new.svg';
-import SwitchOnVisible from '../SVG/isSwitchedOnVisible_new.svg';
+import SwitchVisible from '../SVG/switchDefault_0000.svg';
+import SwitchOffVisible from '../SVG/Switch_off_10_10.svg';
+import SwitchOnVisible from '../SVG/Switch_off_01_01.svg';
 
 import DataList from './RegionAlartList'
 import '../Styling/Regions.css';
@@ -14,8 +18,13 @@ import LastBookContext from './LastBookContext';
 
 function Regions() {
     const { lastBookElement } = useContext(LastBookContext);
+
+    const [ currentValue, setCurrentValue ] = useState("0");
+    const [ VoltageValue, setVoltageValue ] = useState("0");
+    const [Frequency ,setFrequency] =useState("0");
+    const [Power, setPower]=useState("0");
     
-    const initialSwitchState = lastBookElement ? lastBookElement.fields.status :"on";
+    const initialSwitchState = lastBookElement ? lastBookElement.fields.status :"01";
     const [isSwitchedOn, setIsSwitchedOn] = useState(initialSwitchState);
     console.log("initial :",initialSwitchState);
 
@@ -32,16 +41,15 @@ function Regions() {
     
         window.addEventListener('wheel', handleWheel, { passive: false });
     
-        // Cleanup function
         return () => {
             window.removeEventListener('wheel', handleWheel, { passive: false });
         };
-    }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
+    }, []); 
     
 
     const handleToggle = async () => {
-        const newStatus = isSwitchedOn === "on" ? "off" : "on";
-        const confirmationMessage = newStatus === "on" 
+        const newStatus = isSwitchedOn === "01" ? "10" : "01";
+        const confirmationMessage = newStatus === "01" 
             ? "Are you sure you want to turn on?" 
             : "Are you sure you want to turn off?";
 
@@ -76,9 +84,15 @@ function Regions() {
 
         socket.onmessage = function(event) {
             const data = JSON.parse(event.data);
-            setIsSwitchedOn(data.message.status);
+            setIsSwitchedOn(data.message.CB_POS);
+
+            setCurrentValue(data.message.CURRENT);
+            setVoltageValue(data.message.VOLTAGE);
+            setFrequency(data.message.FREQ);
+            setPower(data.message.POW);
+
             console.log(data);
-            console.log(data.message.status);
+            console.log(data.message.CB_POS);
         };
 
         socket.onopen = function(event) {
@@ -93,31 +107,38 @@ function Regions() {
     return (
       <div className="Regions" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
         <div className="circuit-Border">  
-            <div className="circuit" style={{marginBottom:'400px', marginLeft:'-300px' ,paddingRight:'150px', paddingLeft:'280px', marginRight:'200px'}}>
-                <img src={SwitchVisible} alt="Switch visible" style={{width:'120%'}}/>
+            <div className="circuit" style={{marginBottom:'800px', marginLeft:'-600px', marginRight:'200px'}}>
+                <img src={SwitchVisible} alt="Switch visible" style={{width:'150%'}}/>
                 <div>
-                    {isSwitchedOn === "on" ? (
+                    {isSwitchedOn === "01" ? (
                         <img src={SwitchOnVisible } alt="Switch on SVG" className="switch_on"/>
                     ) : (
                         <img src={SwitchOffVisible} alt="Switch off SVG" className="switch_off"/>
                     )}
                 </div>
                 <div onClick={handleToggle} style={{ 
-                    marginLeft: '450px', 
-                    marginTop: '-310px', 
+                    marginLeft: '240px', 
+                    marginTop: '-40px', 
                     opacity: 0, 
-                    width: '100px', 
-                    height: '100px', 
+                    // width: '200px', 
+                    // height: '100px', 
                     clip: 'rect(1px, 1px, 1px, 1px)', 
                     whiteSpace: 'nowrap'
                     }}>
                     <label style={{ cursor: 'pointer' }}>
-                        {isSwitchedOn === "on" ? "Switch is on" : "Switch is off"}
+                        {isSwitchedOn === "01" ? "Switch is on" : "Switch is off"}
                     </label>
                 </div>
             </div>
         </div>
-        <div className="DataList" style={{ marginBottom:'160px' ,marginLeft:'100px',marginRight:'50px'}}>
+        <div class="data-display">
+                <p>{VoltageValue} KO</p> 
+                <p>{currentValue} A</p> 
+                <p>{Frequency} Hz</p> 
+                <p>{Power} p</p> 
+        </div>
+
+        <div className="DataList" style={{ marginBottom:'160px' ,marginLeft:'300px',marginRight:'50px'}}>
             <DataList />
         </div>
     </div>

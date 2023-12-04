@@ -1,17 +1,15 @@
 .switch_on{
-  max-width: 600px;
-  height: auto;
   position: absolute;
-  margin-left: 483px;
-  margin-top: -333px;
-  width: 0.8%;
+  margin-left: 90px;
+  margin-top: -130px;
+  width: 20%;
 }
 
 .switch_off{
   position: absolute;
-  margin-left: 468px;
-  margin-top: -333px;
-  width: 1.5%;
+  margin-left: 90px;
+  margin-top: -130px;
+  width: 20%;
 } 
 
   
@@ -87,7 +85,8 @@
     background-color: red;
     color: white; 
   }
-  
+
+
 .DataList {
     /* margin-top: 10px; */
     /* flex: 1;  */
@@ -99,41 +98,30 @@
     overflow-y: auto; /* Makes it scrollable if content is too long */
 }
 
-.circuit-Border{
-  border: 1px solid #ccc; 
-  padding-left:100px;
-  background-color: #b8b7b7; /* Light background color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+.data-display {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  padding-right:-400px;
+  margin-left:-400px;
+  /* margin-top:-500px; */
+  
 }
 
-@media screen and (min-width: 1024px) and (max-width: 2048px) {
-  .switch_on {
-    position: absolute;
-    margin-left: 483px;
-    margin-top: -333px;
-    width: 0.8%;
-  }
 
-   .switch_off {
-    position: absolute;
-    margin-left: 468px;
-    margin-top: -333px;
-    width: 1.5%;
-  }
+.data-display p {
+  color: #333;
+  font-size: 16px;
+  margin: 15px 0;
 }
 
-@media screen (min-width: 600px){
-  .switch_on {
-    position: absolute;
-    margin-left: 483px;
-    margin-top: -333px;
-    width: 0.8%;
-  }
-
-   .switch_off {
-    position: absolute;
-    margin-left: 468px;
-    margin-top: -333px;
-    width: 1.5%;
-  }
+.data-display p::before {
+  font-weight: bold;
 }
+
+.data-display p:nth-child(1)::before { content: "Voltage: "; }
+.data-display p:nth-child(2)::before { content: "Current: "; }
+.data-display p:nth-child(3)::before { content: "Frequency: "; }
+.data-display p:nth-child(4)::before { content: "Power: "; }

@@ -59,10 +59,22 @@ def on_message(client, userdata, message):
     with connection:
         try:
             book_data = json.loads(received_payload)
+            print(book_data);
             
             if 'description' not in book_data or book_data["description"] is None:
                 book_data["description"] = 'QA1 Switched On : Location-Katugasthota : Device-Mobile'
             
+            # Set status based on CB_POS value
+            cb_pos = book_data.get("CB_POS")
+            if cb_pos == "01":
+                book_data["status"] = "on"
+            elif cb_pos == "10":
+                book_data["status"] = "off"
+            elif cb_pos == "00":
+                book_data["status"] = "Error01"
+            elif cb_pos == "11":
+                book_data["status"] = "Error02"
+
             # Insert into the database
             insert_query = """
                 INSERT INTO kafka_app_book (status, received_at, description)
