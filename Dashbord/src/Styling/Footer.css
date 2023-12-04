@@ -12,13 +12,14 @@
 }
 
 .footer-table th, .footer-table td {
-  border: 1px solid #ddd; /* Excel-like grid lines */
+  border: 2px solid #0294A5; /* Excel-like grid lines */
   text-align: left;
   padding: 8px;
 }
 
 .footer-table th {
   background-color: #e7e7e7; /* Header background */
+  padding-top:10px;
 }
 .col-id { width: 100px; }
 .col-status { width: 100px; }

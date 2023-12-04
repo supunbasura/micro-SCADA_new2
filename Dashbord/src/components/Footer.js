@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import '../Styling/Footer.css'
+import React, { useState, useEffect ,useContext } from 'react';
+import '../Styling/Footer.css';
+import LastBookContext from './LastBookContext';
 
 function Footer() {
     const [events, setEvents] = useState([
@@ -13,6 +14,7 @@ function Footer() {
   const [data, setData] = useState([]);
   const [lastBook, setLastBook] = useState(null);
   const [last_book_element, setLastElementBook] = useState(null);
+  const { setLastBookElement } = useContext(LastBookContext);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -24,7 +26,8 @@ function Footer() {
                     const lastElement = parsedData.slice(-1)[0];
                     const lastFive = parsedData.slice(-5);
                     setLastBook(lastFive);
-                    setLastElementBook(lastElement);
+                    // setLastElementBook(lastElement);
+                    setLastBookElement(lastElement);
                     console.log("Last book Element : ",lastElement);
                     // console.log("Last Element:", lastFive);
                 } else {

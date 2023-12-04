@@ -1,18 +1,43 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect ,useContext} from 'react';
 import SwitchOn from '../SVG/Switch_On_new2.svg';
 import SwitchOff from '../SVG/Switch_Off_new2.svg';
+
 
 import SwitchVisible from '../SVG/isSwitchedVisible_new.svg';
 import SwitchOffVisible from '../SVG/isSwitchedOffVisible_new.svg';
 import SwitchOnVisible from '../SVG/isSwitchedOnVisible_new.svg';
 
 import DataList from './RegionAlartList'
-
 import '../Styling/Regions.css';
+import LastBookContext from './LastBookContext';
 
 function Regions() {
-    const [isSwitchedOn, setIsSwitchedOn] = useState("off");
+    const { lastBookElement } = useContext(LastBookContext);
+    
+    const initialSwitchState = lastBookElement ? lastBookElement.fields.status :"on";
+    const [isSwitchedOn, setIsSwitchedOn] = useState(initialSwitchState);
+    console.log("initial :",initialSwitchState);
+
+    // const [isSwitchedOn, setIsSwitchedOn] = useState("off");
     const [isToggling, setIsToggling] = useState(false);
+
+
+    useEffect(() => {
+        const handleWheel = (event) => {
+            if (event.ctrlKey === true) {
+                event.preventDefault();
+            }
+        };
+    
+        window.addEventListener('wheel', handleWheel, { passive: false });
+    
+        // Cleanup function
+        return () => {
+            window.removeEventListener('wheel', handleWheel, { passive: false });
+        };
+    }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
+    
 
     const handleToggle = async () => {
         const newStatus = isSwitchedOn === "on" ? "off" : "on";
@@ -67,31 +92,32 @@ function Regions() {
 
     return (
       <div className="Regions" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-        <header className="Regions-header">
-            <img src={SwitchVisible} alt="Switch visible" />
-            <div>
-                {isSwitchedOn === "on" ? (
-                    <img src={SwitchOnVisible } alt="Switch on SVG" style={{ position: 'absolute' ,marginLeft: '404px', marginTop: '-272px'  }} />
-                ) : (
-                    <img src={SwitchOffVisible} alt="Switch off SVG" style={{ position: 'absolute' ,marginLeft: '392px', marginTop: '-272px'  }} />
-                )}
+        <div className="circuit-Border">  
+            <div className="circuit" style={{marginBottom:'400px', marginLeft:'-300px' ,paddingRight:'150px', paddingLeft:'280px', marginRight:'200px'}}>
+                <img src={SwitchVisible} alt="Switch visible" style={{width:'120%'}}/>
+                <div>
+                    {isSwitchedOn === "on" ? (
+                        <img src={SwitchOnVisible } alt="Switch on SVG" className="switch_on"/>
+                    ) : (
+                        <img src={SwitchOffVisible} alt="Switch off SVG" className="switch_off"/>
+                    )}
+                </div>
+                <div onClick={handleToggle} style={{ 
+                    marginLeft: '450px', 
+                    marginTop: '-310px', 
+                    opacity: 0, 
+                    width: '100px', 
+                    height: '100px', 
+                    clip: 'rect(1px, 1px, 1px, 1px)', 
+                    whiteSpace: 'nowrap'
+                    }}>
+                    <label style={{ cursor: 'pointer' }}>
+                        {isSwitchedOn === "on" ? "Switch is on" : "Switch is off"}
+                    </label>
+                </div>
             </div>
-            <div onClick={handleToggle} style={{ 
-                marginLeft: '350px', 
-                marginTop: '-247px', 
-                opacity: 0,
-                width: '100px', 
-                height: '90px', 
-                clip: 'rect(1px, 1px, 1px, 1px)', 
-                whiteSpace: 'nowrap'
-                }}>
-                <label style={{ cursor: 'pointer' }}>
-                    {isSwitchedOn === "on" ? "Switch is on" : "Switch is off"}
-                </label>
-            </div>
-
-        </header>
-        <div className="DataList">
+        </div>
+        <div className="DataList" style={{ marginBottom:'160px' ,marginLeft:'100px',marginRight:'50px'}}>
             <DataList />
         </div>
     </div>

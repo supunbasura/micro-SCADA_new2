@@ -1,6 +1,19 @@
-/* .Regions {
-    text-align: center;
-  } */
+.switch_on{
+  max-width: 600px;
+  height: auto;
+  position: absolute;
+  margin-left: 483px;
+  margin-top: -333px;
+  width: 0.8%;
+}
+
+.switch_off{
+  position: absolute;
+  margin-left: 468px;
+  margin-top: -333px;
+  width: 1.5%;
+} 
+
   
   /* .Regions-header {
     background-color: #dad9db;
@@ -12,6 +25,12 @@
     font-size: calc(10px + 2vmin);
     color: white;
   } */
+  .circuit-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center;  */
+    /* align-items: center; */
+  }
 
   h1 {
     margin-bottom: 20px;
@@ -72,9 +91,49 @@
 .DataList {
     /* margin-top: 10px; */
     /* flex: 1;  */
-    border: 1px solid #ccc; /* Adds a border */
+    border: 1px solid #ccc; 
     padding: 20px; /* Adds padding inside the box */
-    background-color: #6d6868; /* Light background color */
+    padding-bottom:10px;
+    background-color: #b8b7b7; /* Light background color */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
     overflow-y: auto; /* Makes it scrollable if content is too long */
+}
+
+.circuit-Border{
+  border: 1px solid #ccc; 
+  padding-left:100px;
+  background-color: #b8b7b7; /* Light background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+@media screen and (min-width: 1024px) and (max-width: 2048px) {
+  .switch_on {
+    position: absolute;
+    margin-left: 483px;
+    margin-top: -333px;
+    width: 0.8%;
+  }
+
+   .switch_off {
+    position: absolute;
+    margin-left: 468px;
+    margin-top: -333px;
+    width: 1.5%;
+  }
+}
+
+@media screen (min-width: 600px){
+  .switch_on {
+    position: absolute;
+    margin-left: 483px;
+    margin-top: -333px;
+    width: 0.8%;
+  }
+
+   .switch_off {
+    position: absolute;
+    margin-left: 468px;
+    margin-top: -333px;
+    width: 1.5%;
+  }
 }

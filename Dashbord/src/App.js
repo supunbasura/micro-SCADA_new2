@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route ,useLocation } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import NetworkDiagram from './components/NetworkDiagram';
@@ -8,9 +8,12 @@ import './App.css';
 import Footer from './components/Footer';
 import AlarmViewer from './components/AlarmViewer';
 import Login from './components/Login';
+import LastBookContext from './components/LastBookContext';
 
 function App() {
+  const [lastBookElement, setLastBookElement] = useState(null);
   return (
+    <LastBookContext.Provider value={{ lastBookElement, setLastBookElement }}>
     <Router>
       <div className="app-container">
         <Navbar />
@@ -27,6 +30,7 @@ function App() {
         <ConditionalFooter />
       </div>
     </Router>
+    </LastBookContext.Provider>
   );
 }
 function ConditionalFooter() {

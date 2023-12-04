@@ -4,12 +4,12 @@
     margin-bottom: 1px;
     padding: 1px;
     background-color: #f9f9f9; /* Light grey background */
-    border-radius: 5px; /* Rounded corners */
+    /* border-radius: 5px;  */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .DataList-item:hover {
-    background-color: #e9e9e9; /* Slightly darker on hover */
+    background-color: rgb(199, 201, 200); /* Slightly darker on hover */
 }
 
 .DataList-icon {
@@ -18,7 +18,11 @@
 }
 
 .DataList-text {
-    font-size: 7px; /* Adjust as needed */
+    padding-top:1.5px;
+    padding-bottom:1.5px;
+    margin-Left: 10px;
+    margin-Right: 5px;
+    font-size: 16px; /* Adjust as needed */
     color: #333; /* Dark grey text */
     /* Add more text styling as needed */
 }
