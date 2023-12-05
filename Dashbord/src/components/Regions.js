@@ -20,8 +20,8 @@ import LastBookContext from './LastBookContext';
 function Regions() {
     const { lastBookElement } = useContext(LastBookContext);
 
-    const [ currentValue, setCurrentValue ] = useState("0");
-    const [ VoltageValue, setVoltageValue ] = useState("0");
+    const [currentValue, setCurrentValue ] = useState("0");
+    const [VoltageValue, setVoltageValue ] = useState("0");
     const [Frequency ,setFrequency] =useState("0");
     const [Power, setPower]=useState("0");
     

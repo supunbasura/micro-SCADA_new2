@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEB SCADA</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <div id="legend" class="map-overlay">
+      <div class="legend-title">Legend</div>
+      <div class="legend-item">
+          <div class="legend-marker"></div>
+          <div class="legend-text">LBS</div>
+      </div>
+      <!-- Additional legend items can be added here -->
+  </div>
+  
+    <div id="sidebar">
+      <h2>Navigation</h2>
+      <button class="layer-button" id="polygonsButton">
+        Distribution 
+      </button>
+      <button class="layer-button" id="transmissionButton">
+        Transmission 
+      </button>
+      <button class="layer-button" id="GenerationButton">
+        Generation
+      </button>
+
+      <!-- Distribution Line Section -->
+      <div id="distributionLineSection" style="display: none">
+        <h2>Distribution Lines</h2>
+        <button class="layer-button" id="line33kVButton">33 kV Line</button>
+        <button class="layer-button" id="line11kVButton">11 kV Line</button>
+      </div>
+
+      <button class="back-button" id="backButton" style="display: none">
+        Back
+      </button>
+    </div>
+
+    <div id="map"></div>  
+    <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import NetworkDiagram from './NetworkDiagram';
 import Regions from './Regions';
 import Regions2 from './Regions2';
+import Regions3 from './Regions3';
 import EventViewer from './EventViewer';
 // import './App.css';
 import Footer from './Footer';
@@ -23,6 +24,7 @@ function HomePage() {
             <Route path="/network-diagram" element={<NetworkDiagram />} />
             <Route path="/Regions" element={<Regions />} />
             <Route path="/Regions2" element={<Regions2 />} />
+            <Route path="/Regions3" element={<Regions3 />} />
             <Route path="/AlarmViewer" element={<AlarmViewer />} />
             <Route path="/EventViewer" element={<EventViewer />} />
             <Route path="/Login" element={<Login />} />

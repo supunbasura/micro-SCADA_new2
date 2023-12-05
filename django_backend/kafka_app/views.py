@@ -34,7 +34,7 @@ def publish_mqtt_message(request):
     # Use the publish_message function to publish the message
     publish_message(MQTT_TOPIC, payload)
 
-    return JsonResponse({"status": "Message Published"})
+    return JsonResponse({'redirect_url': 'http://localhost:3000/'})
 
 @api_view(['GET'])
 def fetch_books(request):
