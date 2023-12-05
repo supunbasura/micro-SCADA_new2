@@ -17,7 +17,7 @@ import DataList from './RegionAlartList'
 import '../Styling/Regions.css';
 import LastBookContext from './LastBookContext';
 
-function Regions() {
+function Regions2() {
     const { lastBookElement } = useContext(LastBookContext);
 
     const [ currentValue, setCurrentValue ] = useState("0");
@@ -153,4 +153,4 @@ function Regions() {
     );
 }
 
-export default Regions;
+export default Regions2;

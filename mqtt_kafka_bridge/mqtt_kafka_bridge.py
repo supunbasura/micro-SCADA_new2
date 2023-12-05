@@ -71,9 +71,9 @@ def on_message(client, userdata, message):
             elif cb_pos == "10":
                 book_data["status"] = "off"
             elif cb_pos == "00":
-                book_data["status"] = "Error01"
+                book_data["status"] = "Error! 00"
             elif cb_pos == "11":
-                book_data["status"] = "Error02"
+                book_data["status"] = "Error! 11"
 
             # Insert into the database
             insert_query = """

@@ -9,38 +9,15 @@ import Footer from './components/Footer';
 import AlarmViewer from './components/AlarmViewer';
 import Login from './components/Login';
 import LastBookContext from './components/LastBookContext';
+import HomePage from './components/HomePage';
 
 function App() {
-  const [lastBookElement, setLastBookElement] = useState(null);
   return (
-    <LastBookContext.Provider value={{ lastBookElement, setLastBookElement }}>
-    <Router>
-      <div className="app-container">
-        <Navbar />
-        <div className="content">
-          <Routes>
-            <Route path="/network-diagram" element={<NetworkDiagram />} />
-            <Route path="/Regions" element={<Regions />} />
-            <Route path="/AlarmViewer" element={<AlarmViewer />} />
-            <Route path="/EventViewer" element={<EventViewer />} />
-            <Route path="/Login" element={<Login />} />
-
-          </Routes>
-        </div>
-        <ConditionalFooter />
+      <div>
+        <HomePage/>
       </div>
-    </Router>
-    </LastBookContext.Provider>
   );
 }
-function ConditionalFooter() {
-  const location = useLocation();
 
-  if (location.pathname !== "/Login") {
-    return <Footer />;
-  }
-
-  return null;
-}
 
 export default App;
