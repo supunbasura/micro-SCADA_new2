@@ -87,7 +87,7 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tsdb',
+        'NAME': 'tssl',
         'USER': 'postgres',
         'PASSWORD': ' ',
         'HOST': 'localhost',

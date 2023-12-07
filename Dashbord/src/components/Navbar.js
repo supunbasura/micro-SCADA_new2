@@ -25,7 +25,9 @@ const Navbar = () => {
       <div className="nav-link"><NavLink to="/history-trends" activeClassName="active">History / Trends</NavLink></div>
       <div className="nav-link"><NavLink to="/Reports" activeClassName="active">Reports</NavLink></div>
       <div className="nav-link"><NavLink to="/login" activeClassName="active">Login</NavLink></div>
-      <div className="nav-link" onClick={handleExitClick}><NavLink to=" "activeClassName="active">Exit</NavLink></div>
+      <div className="nav-link"><NavLink to="/Exit" activeClassName="active">Exit</NavLink></div>
+      
+      {/* <div className="nav-link" onClick={handleExitClick}><NavLink to=" "activeClassName="active">Exit</NavLink></div> */}
 
       <div className="logo-section right-logo">
         <img src={companyLogo} alt="CEB Logo" className="logo" />

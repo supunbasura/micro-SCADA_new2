@@ -18,9 +18,11 @@
   }
   
   .login-form h2 {
+    padding-bottom: 90px;
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    font-size: 30px; 
   }
   
   /* Styles for the input group */

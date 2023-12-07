@@ -26,9 +26,14 @@ MQTT_TOPIC = "matt-client"
 
 @api_view(['POST'])
 def publish_mqtt_message(request):
-    description = "QA1 Switched On : Location-Katugasthota : Device-WebApp"
+    VOLTAGE ='0'
+    CURRENT = '0'
+    FREQ = '0'
+    POW = '0'
+    statusviewer= 'Device - WebApp'
+    description = "QA1 Switched On : Location-Katugasthota "
     button_status = request.data.get("status", "10")
-    status_description = {"CB_POS": button_status, "description": description}
+    status_description = {"CB_POS": button_status, "description": description ,"VOLTAGE":VOLTAGE,"CURRENT":CURRENT,"FREQ":FREQ,"POW":POW,"statusviewer":statusviewer}
     payload = json.dumps(status_description)
 
     # Use the publish_message function to publish the message

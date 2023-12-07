@@ -1,0 +1,77 @@
+.exit-page {
+    position: relative;
+    background-image: url('../Images/light-tower-view-sunset.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
+    width: 100%;
+    overflow: hidden;
+    opacity: 0.9;
+}
+
+.exit-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: inherit;
+    filter: blur(70%);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.exit-content {
+    /* position: relative; */
+    /* padding: 20px; */
+    color: rgb(46, 45, 45); 
+    font-size: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -100px;
+}
+
+.exit-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(241, 244, 243, 0.5); 
+    z-index: -1;
+}
+.heading{
+    color:rgb(46, 67, 84);
+}
+
+.login-button {
+  display: inline-block;
+  width:400px;
+  padding: 15px 20px;
+  margin-top: 20px;
+  font-size: 26px;
+  color: #fff; 
+  background-color: #017080; 
+  border: none;
+  border-radius: 40px;
+  text-decoration: none; 
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0294A5; /* Darker shade for hover effect */
+  text-decoration: none; /* Keeps the text without underline on hover */
+  color: #fff;
+}
+
+.login-button:active {
+  background-color: #017080; /* Even darker shade for active/click effect */
+}
+

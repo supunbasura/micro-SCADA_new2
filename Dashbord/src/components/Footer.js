@@ -53,6 +53,7 @@ function Footer() {
                         <th className="col-status">Status</th>
                         <th className="col-received-at">Received At</th>
                         <th className="col-description">Description</th>
+                        <th className="col-statusviewer">statusviewer</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,6 +63,7 @@ function Footer() {
                                 <td>{book.fields.status ?? 'No status available'}</td>
                                 <td>{book.fields.received_at ? new Date(book.fields.received_at).toLocaleString() : 'No date available'}</td>
                                 <td>{book.fields.description ?? 'No description available'}</td>
+                                <td>{book.fields.statusviewer ?? 'No statusviewer available'}</td>
                             </tr>
                         ))}
                     </tbody>

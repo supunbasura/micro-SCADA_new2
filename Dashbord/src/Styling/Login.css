@@ -7,11 +7,13 @@
   }
   
   .image-container {
-    width: 60%;
+    width: 55%;
     /* If the image doesn't cover the full container or doesn't scale well, you might want to adjust the object-fit property */
     display: flex; /* This ensures the image can be centered inside the div if it doesn't take full width */
     align-items: center; /* Aligns the image vertically */
     justify-content: center; /* Aligns the image horizontally */
+    margin-top:-100px;
+    margin-right: 50px;
   }
   
   .image-container img {
@@ -20,6 +22,7 @@
   }
   
   .login-container {
+    margin-top: -50px;
     /* width: 40%; */
     padding: 1rem;
   }

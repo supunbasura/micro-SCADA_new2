@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import SwitchOn from '../SVG/Switch_On_new2.svg';
 import SwitchOff from '../SVG/Switch_Off_new2.svg';
 
-import SwitchVisible from '../SVG/switchDefault_0000.svg';
+import SwitchVisible from '../SVG/switchDefault_00000.svg';
 import SwitchOffVisible from '../SVG/Switch_off_10_10.svg';
 import SwitchOnVisible from '../SVG/Switch_off_01_01.svg';
 import Switch_00_visible from '../SVG/Switch_off_00_00.svg';
@@ -23,14 +23,36 @@ function Regions3() {
 
     const { currentValue, setCurrentValue, voltageValue, setVoltageValue, frequency, setFrequency, power, setPower } = useContext(Regions3DataContext);
 
-    const initialSwitchState = lastBookElement ? lastBookElement.fields.status :"01";
-    const [isSwitchedOn, setIsSwitchedOn] = useState(initialSwitchState);
+    // const initialSwitchState = lastBookElement ? lastBookElement.fields.status :"01";
+    // const [isSwitchedOn, setIsSwitchedOn] = useState(initialSwitchState);
     // console.log("initial :",initialSwitchState);
 
-    // const [isSwitchedOn, setIsSwitchedOn] = useState("off");
+    const [isSwitchedOn, setIsSwitchedOn] = useState("off");
     const [isToggling, setIsToggling] = useState(false);
 
 
+    useEffect(() => {
+        if (lastBookElement && lastBookElement.fields) {
+            switch (lastBookElement.fields.status) {
+                case 'on':
+                    setIsSwitchedOn('01');
+                    break;
+                case 'off':
+                    setIsSwitchedOn('10');
+                    break;
+                case 'Error! 11':
+                    setIsSwitchedOn('11');
+                    break;
+                case 'Error! 00':
+                    setIsSwitchedOn('00');
+                    break;
+                default:
+                    // Handle other cases or set a default value
+                    break;
+            }
+        }
+    }, [lastBookElement]);
+    
     useEffect(() => {
         const handleWheel = (event) => {
             if (event.ctrlKey === true) {
@@ -107,24 +129,24 @@ function Regions3() {
       <div>
         <div>  
             <div>
-                <img src={SwitchVisible} alt="Switch visible" style={{width:'100%',marginBottom:'-34px'}}/>
+                <img src={SwitchVisible} alt="Switch visible" style={{width:'100%',marginBottom:'-73px'}}/>
                 <div>
                     {isSwitchedOn === "01" ? (
-                        <img src={SwitchOnVisible } alt="Switch on SVG" className="switch_on" style={{width:'70%' ,marginTop:'-200px',marginLeft:'150px'}}/>
+                        <img src={SwitchOnVisible } alt="Switch on SVG" className="switch_on" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
                     )
                     : isSwitchedOn === "10" ? (
-                        <img src={SwitchOffVisible} alt="Switch off SVG" className="switch_off" style={{width:'70%' ,marginTop:'-200px',marginLeft:'150px'}}/>
+                        <img src={SwitchOffVisible} alt="Switch off SVG" className="switch_off" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
                     )
                     : isSwitchedOn === "00" ? (
-                        <img src={Switch_00_visible} alt="Switch 00 SVG" className="switch_00" style={{width:'70%' ,marginTop:'-200px',marginLeft:'150px'}}/>
+                        <img src={Switch_00_visible} alt="Switch 00 SVG" className="switch_00" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
                     ):(
-                        <img src={Switch_11_visible} alt="Switch 11 SVG" className="switch_11" style={{width:'70%' ,marginTop:'-200px',marginLeft:'150px'}}/>
+                        <img src={Switch_11_visible} alt="Switch 11 SVG" className="switch_11" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
                     )
                 }
                 </div>
                 <div onClick={handleToggle} style={{ 
                     marginLeft: '390px', 
-                    marginTop: '-50px', 
+                    marginTop: '-40px', 
                     opacity: 0, 
                     width: '200px', 
                     height: '100px', 

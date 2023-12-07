@@ -10,6 +10,7 @@ import EventViewer from './EventViewer';
 import Footer from './Footer';
 import AlarmViewer from './AlarmViewer';
 import Login from './Login';
+import Exit from './Exit';
 import LastBookContext from './LastBookContext';
 
 function HomePage() {
@@ -28,6 +29,7 @@ function HomePage() {
             <Route path="/AlarmViewer" element={<AlarmViewer />} />
             <Route path="/EventViewer" element={<EventViewer />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/Exit" element={<Exit />} />
 
           </Routes>
         </div>
@@ -40,7 +42,7 @@ function HomePage() {
 function ConditionalFooter() {
   const location = useLocation();
 
-  if (location.pathname !== "/Login") {
+  if (location.pathname !== "/login" && location.pathname !== "/Exit") {
     return <Footer />;
   }
 

@@ -7,7 +7,7 @@ from aiohttp import web
 import asyncio
 
 DATABASES = {
-    'NAME': 'tsdb',
+    'NAME': 'tssl',
     'USER': 'postgres',
     'PASSWORD': ' ',  # Adjust your password
     'HOST': 'localhost',
@@ -61,8 +61,6 @@ def on_message(client, userdata, message):
             book_data = json.loads(received_payload)
             print(book_data);
             
-            if 'description' not in book_data or book_data["description"] is None:
-                book_data["description"] = 'QA1 Switched On : Location-Katugasthota : Device-Mobile'
             
             # Set status based on CB_POS value
             cb_pos = book_data.get("CB_POS")
@@ -75,12 +73,18 @@ def on_message(client, userdata, message):
             elif cb_pos == "11":
                 book_data["status"] = "Error! 11"
 
+            if 'description' not in book_data or book_data["description"] is None:
+                book_data["description"] = f'QA1 Switched {book_data["status"]} : Location-Katugasthota'
+            
+            if 'statusviewer' not in book_data or book_data["statusviewer"] is None:
+                book_data["statusviewer"] = 'Device - Mobile'
+                
             # Insert into the database
             insert_query = """
-                INSERT INTO kafka_app_book (status, received_at, description)
-                VALUES (%s, NOW(), %s);
+                INSERT INTO kafka_app_book (status, received_at, description,VOLTAGE, CURRENT, FREQ, POW,statusviewer)
+                VALUES (%s, NOW(), %s,%s,%s,%s,%s,%s);
             """
-            cursor.execute(insert_query, (book_data["status"], book_data["description"]))
+            cursor.execute(insert_query, (book_data["status"], book_data["description"],book_data["VOLTAGE"],book_data["CURRENT"],book_data["FREQ"],book_data["POW"],book_data["statusviewer"]))
             connection.commit()
             print("Data saved to TimescaleDB.")
 

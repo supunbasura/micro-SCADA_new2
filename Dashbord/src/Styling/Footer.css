@@ -24,4 +24,5 @@
 .col-id { width: 100px; }
 .col-status { width: 100px; }
 .col-received-at { width: 100px; }
-.col-description { width: 250px; }
+.col-description { width: 100px; }
+.col-statusviewer {width: 100px; }
