@@ -466,3 +466,12 @@ document
     selectLayer("polygons");
     document.getElementById("distributionLineSection").style.display = "block";
   });
+
+  document.getElementById('homeButton').addEventListener('click', function () {
+    const confirmed = window.confirm('Are you sure you want to navigate to the SCADA home page?');
+    
+    if (confirmed) {
+      window.location.href = 'http://localhost:3000/';
+    }
+  });
+  
