@@ -1,14 +1,32 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import '../Styling/Navbar.css';
 import companyLogo from '../Images/Company_logo.png';
 import CEBlogo from '../Images/CEB.png';
-// import Footer from './components/Footer';
 
 const Navbar = () => {
+  const [isOnLoginPage, setIsOnLoginPage] = useState(false);
+  const [isOnExitPage, setIsOnExitPage] = useState(false);
+  const location = useLocation();
 
-  const handleExitClick = () => {
-    window.location.href = 'http://127.0.0.1:5501/';
+  useEffect(() => {
+    setIsOnLoginPage(location.pathname === '/login');
+    setIsOnExitPage(location.pathname === '/');
+  }, [location]);
+
+  const renderNavLink = (to, label) => {
+    // Determine if the link should be enabled
+    // Links are enabled if not on the Login page or if it's the 'Exit' link
+    // and if not on the Exit page or if it's the 'Login' link
+    const isLinkEnabled = (!isOnLoginPage || to === '/') && (!isOnExitPage || to === '/login');
+
+    return (
+      <div className={`nav-link ${!isLinkEnabled ? 'disabled' : ''}`}>
+        <NavLink to={to} activeClassName="active" disabled={!isLinkEnabled}>
+          {label}
+        </NavLink>
+      </div>
+    );
   };
 
   return (
@@ -16,24 +34,21 @@ const Navbar = () => {
       <div className="logo-section left-logo">
         <img src={CEBlogo} alt="Systems Logo" className="logo" />
       </div>
-
-      {/* Since we have 6 navigation links, each will take up one "column" */}
-      <div className="nav-link"><NavLink to="/network-diagram" activeClassName="active">Network Diagram</NavLink></div>
-      <div className="nav-link"><NavLink to="/regions2" activeClassName="active">Regions</NavLink></div>
-      <div className="nav-link"><NavLink to="/event-viewer" activeClassName="active">Event Viewer</NavLink></div>
-      <div className="nav-link"><NavLink to="/alarm-viewer" activeClassName="active">Alarm Viewer</NavLink></div>
-      <div className="nav-link"><NavLink to="/history-trends" activeClassName="active">History / Trends</NavLink></div>
-      <div className="nav-link"><NavLink to="/Reports" activeClassName="active">Reports</NavLink></div>
-      <div className="nav-link"><NavLink to="/login" activeClassName="active">Login</NavLink></div>
-      <div className="nav-link"><NavLink to="/Exit" activeClassName="active">Exit</NavLink></div>
       
-      {/* <div className="nav-link" onClick={handleExitClick}><NavLink to=" "activeClassName="active">Exit</NavLink></div> */}
+      {renderNavLink('/network-diagram', 'Network Diagram')}
+      {renderNavLink('/regions2', 'Regions')}
+      {renderNavLink('/event-viewer', 'Event Viewer')}
+      {renderNavLink('/alarm-viewer', 'Alarm Viewer')}
+      {renderNavLink('/history-trends', 'History / Trends')}
+      {renderNavLink('/Reports', 'Reports')}
+      {renderNavLink('/login', 'Login')}
+      {renderNavLink('/', 'Exit')}
+      {/* {renderNavLink('/Exit', 'Exit')} */}
 
       <div className="logo-section right-logo">
         <img src={companyLogo} alt="CEB Logo" className="logo" />
       </div>
     </nav>
-    
   );
 };
 

@@ -22,6 +22,7 @@ function HomePage() {
         <Navbar />
         <div className="content">
           <Routes>
+            <Route path="/" element={<Exit/>} />
             <Route path="/network-diagram" element={<NetworkDiagram />} />
             <Route path="/Regions" element={<Regions />} />
             <Route path="/Regions2" element={<Regions2 />} />
@@ -29,8 +30,7 @@ function HomePage() {
             <Route path="/AlarmViewer" element={<AlarmViewer />} />
             <Route path="/EventViewer" element={<EventViewer />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/Exit" element={<Exit />} />
-
+            {/* <Route path="/Exit" element={<Exit />} /> */}
           </Routes>
         </div>
         <ConditionalFooter />
@@ -42,7 +42,7 @@ function HomePage() {
 function ConditionalFooter() {
   const location = useLocation();
 
-  if (location.pathname !== "/login" && location.pathname !== "/Exit") {
+  if (location.pathname !== "/login" && location.pathname !== "/") {
     return <Footer />;
   }
 

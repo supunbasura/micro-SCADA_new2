@@ -39,3 +39,8 @@
     color: #fff;
   }
   
+  .nav-link.disabled a {
+    pointer-events: none;
+    color: grey; /* or any other style to indicate it's disabled */
+  }
+  

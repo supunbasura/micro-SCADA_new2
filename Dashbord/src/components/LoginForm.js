@@ -41,8 +41,8 @@ const LoginForm = () => {
         </div>
         <button type="submit" className="login-button">Sign in</button>
         <div className="login-footer">
-          <a href="/forgot-password">Forgot Password?</a>
-          <a href="/sign-up">Create an account</a>
+          <a href="/Exit">Forgot Password?</a>
+          <a href="/Exit">Create an account</a>
         </div>
       </form>
     </div>
