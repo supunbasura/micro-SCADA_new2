@@ -9,6 +9,19 @@ function Login() {
     document.body.style.overflow = 'hidden';
     return () => document.body.style.overflow = originalStyle;
   }, []);
+  useEffect(() => {
+    const handleWheel = (event) => {
+        if (event.ctrlKey === true) {
+            event.preventDefault();
+        }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+        window.removeEventListener('wheel', handleWheel, { passive: false });
+    };
+}, []); 
   return (
       <div className="content">
         <div className="image-container">

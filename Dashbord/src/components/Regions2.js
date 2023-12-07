@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import MyComponent from './Test';
 import CustomIframe from './CustomIframe';
 import Frame from 'react-frame-component';
@@ -10,6 +10,19 @@ import { Regions3DataProvider } from './Regions3DataContext';
 
 
 function Regions2() {
+  useEffect(() => {
+    const handleWheel = (event) => {
+        if (event.ctrlKey === true) {
+            event.preventDefault();
+        }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+        window.removeEventListener('wheel', handleWheel, { passive: false });
+    };
+  }, []); 
   return (
     <div className="app">
       <Regions3DataProvider>

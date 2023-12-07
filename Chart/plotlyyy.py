@@ -27,7 +27,7 @@ def fetch_data():
             SELECT received_at, VOLTAGE, CURRENT, FREQ, POW
             FROM kafka_app_book
             ORDER BY received_at DESC
-            LIMIT 10
+            LIMIT 50
         """)
         result = cursor.fetchall()
         cursor.close()  # Close the cursor

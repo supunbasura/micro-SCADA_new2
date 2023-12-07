@@ -9,6 +9,19 @@ function Exit() {
     return () => document.body.style.overflow = originalStyle;
   }, []);
 
+  useEffect(() => {
+    const handleWheel = (event) => {
+        if (event.ctrlKey === true) {
+            event.preventDefault();
+        }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+        window.removeEventListener('wheel', handleWheel, { passive: false });
+    };
+  }, []); 
   return (
     <div className="exit-page">
       <div className="exit-content">

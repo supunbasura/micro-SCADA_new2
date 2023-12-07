@@ -1,34 +1,33 @@
 .content {
     display: flex;
-    flex-wrap: wrap; /* This will ensure responsiveness */
-    align-items: center; /* This vertically aligns both the image and the login if the screen is tall enough */
-    justify-content: center; /* This horizontally centers the content */
-    height: 100vh; /* This makes the content fill the screen height */
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; 
   }
   
   .image-container {
     width: 55%;
-    /* If the image doesn't cover the full container or doesn't scale well, you might want to adjust the object-fit property */
-    display: flex; /* This ensures the image can be centered inside the div if it doesn't take full width */
-    align-items: center; /* Aligns the image vertically */
-    justify-content: center; /* Aligns the image horizontally */
+    display: flex; 
+    align-items: center;
+    justify-content: center;
     margin-top:-100px;
     margin-right: 50px;
   }
   
   .image-container img {
-    width: 100%; /* This makes the image fill its container */
-    height: auto; /* This maintains the aspect ratio of the image */
+    width: 100%;
+    height: auto;
   }
   
   .login-container {
     margin-top: -50px;
-    /* width: 40%; */
     padding: 1rem;
   }
   
   .custom-image {
     width: 60%;
     height: 100%;
+    border-radius: 10px;
   }
   

@@ -7,6 +7,7 @@ import CEBlogo from '../Images/CEB.png';
 const Navbar = () => {
   const [isOnLoginPage, setIsOnLoginPage] = useState(false);
   const [isOnExitPage, setIsOnExitPage] = useState(false);
+  const [isOnRegionsPage, setIsOnRegionsPage] = useState(false);
   const location = useLocation();
 
   useEffect(() => {

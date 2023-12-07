@@ -7,8 +7,13 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Login submitted for user:', username);
-    window.location.href = 'http://127.0.0.1:5501/';
+    
+    if (username === "Admin" && password === "Admin") {
+      window.location.href = 'http://127.0.0.1:5501/';
+    } else {
+      console.log('Invalid username or password');
+      window.alert('Invalid username or password');
+    }
   };
 
   return (
@@ -21,6 +26,7 @@ const LoginForm = () => {
             id="username"
             type="text"
             value={username}
+            className="input-text"
             onChange={(e) => setUsername(e.target.value)}
             required
           />
@@ -31,6 +37,7 @@ const LoginForm = () => {
             id="password"
             type="password"
             value={password}
+            className="input-text"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
@@ -41,8 +48,8 @@ const LoginForm = () => {
         </div>
         <button type="submit" className="login-button">Sign in</button>
         <div className="login-footer">
-          <a href="/Exit">Forgot Password?</a>
-          <a href="/Exit">Create an account</a>
+          <a href="/">Forgot Password?</a>
+          <a href="/">Create an account</a>
         </div>
       </form>
     </div>
