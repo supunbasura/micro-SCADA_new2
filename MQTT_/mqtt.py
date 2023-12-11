@@ -53,7 +53,7 @@ def publish_random_values():
 
         
         # Wait for a moment before generating the next set of random values
-        time.sleep(3)
+        time.sleep(4)
 
 if __name__ == "__main__":
     # Start publishing random values to topics

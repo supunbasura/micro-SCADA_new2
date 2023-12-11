@@ -28,37 +28,37 @@ function Regions2() {
       <Regions3DataProvider>
       <Frame
         title="Frame 1"
-        width="980px"
-        height="420px"
+        width="49.6%"
+        height="440px"
       >
         <Regions3/>
       </Frame>
       <Frame
         title="Frame 2"
-        width="980px"
-        height="420px"
+        width="50%"
+        height="440px"
       >
         <DataList/>
       </Frame>
       
       <Frame
         title="Frame 3"
-        width="980px"
-        height="420px"
+        width="49.6%"
+        height="432px"
       >
         <AnalogData/>
       </Frame>
       <iframe
         src="http://127.0.0.1:8050/"
         title="Frame4"
-        width="980px"
-        height="420px"
+        width="50%"
+        height="432px"
       ></iframe>
       </Regions3DataProvider>
         <iframe
         title="Footer"
-        width="1400px"
-        height="160px"
+        width="2085px"
+        height="180px"
       ></iframe>
     </div>
   );

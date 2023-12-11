@@ -12,3 +12,27 @@ class Book(models.Model):
     pow=models.CharField(default='0')
     
     statusviewer = models.CharField(default='0')
+    
+class SinglePointIndication(models.Model):
+    timestamp = models.CharField(max_length=50)
+    ioa = models.CharField(max_length=20)
+    value = models.CharField(max_length=20)
+
+class DoublePointIndication(models.Model):
+    timestamp = models.CharField(max_length=50)
+    ioa = models.CharField(max_length=20)
+    value = models.CharField(max_length=20)
+    
+class Controls(models.Model):
+    timestamp = models.CharField(max_length=50)
+    ioa = models.CharField(max_length=20)
+    value = models.CharField(max_length=20)
+    
+class Measurements(models.Model):
+    timestamp = models.CharField(max_length=50)
+    ioa = models.CharField(max_length=20)
+    value = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.timestamp
+    

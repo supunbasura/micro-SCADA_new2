@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import SwitchOn from '../SVG/Switch_On_new2.svg';
 import SwitchOff from '../SVG/Switch_Off_new2.svg';
 
-import SwitchVisible from '../SVG/switchDefault_00000.svg';
+import SwitchVisible from '../SVG/switchDefault____.svg';
 import SwitchOffVisible from '../SVG/Switch_off_10_10.svg';
 import SwitchOnVisible from '../SVG/Switch_off_01_01.svg';
 import Switch_00_visible from '../SVG/Switch_off_00_00.svg';
@@ -105,15 +105,12 @@ function Regions3() {
 
         socket.onmessage = function(event) {
             const data = JSON.parse(event.data);
+            console.log(data.message.CB_POS);
             setIsSwitchedOn(data.message.CB_POS);
-
             setCurrentValue(data.message.CURRENT);
             setVoltageValue(data.message.VOLTAGE);
             setFrequency(data.message.FREQ);
             setPower(data.message.POW);
-
-            console.log(data);
-            console.log(data.message.CB_POS);
         };
 
         socket.onopen = function(event) {
@@ -129,24 +126,24 @@ function Regions3() {
       <div>
         <div>  
             <div>
-                <img src={SwitchVisible} alt="Switch visible" style={{width:'100%',marginBottom:'-73px'}}/>
+                <img src={SwitchVisible} alt="Switch visible" style={{width:'100%',marginBottom:'-75px'}}/>
                 <div>
                     {isSwitchedOn === "01" ? (
-                        <img src={SwitchOnVisible } alt="Switch on SVG" className="switch_on" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
+                        <img src={SwitchOnVisible } alt="Switch on SVG" className="switch_on" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>
                     )
                     : isSwitchedOn === "10" ? (
-                        <img src={SwitchOffVisible} alt="Switch off SVG" className="switch_off" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
+                        <img src={SwitchOffVisible} alt="Switch off SVG" className="switch_off" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>
                     )
                     : isSwitchedOn === "00" ? (
-                        <img src={Switch_00_visible} alt="Switch 00 SVG" className="switch_00" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
+                        <img src={Switch_00_visible} alt="Switch 00 SVG" className="switch_00" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>
                     ):(
-                        <img src={Switch_11_visible} alt="Switch 11 SVG" className="switch_11" style={{width:'50%' ,marginTop:'-150px',marginLeft:'240px'}}/>
+                        <img src={Switch_11_visible} alt="Switch 11 SVG" className="switch_11" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>
                     )
                 }
                 </div>
                 <div onClick={handleToggle} style={{ 
-                    marginLeft: '390px', 
-                    marginTop: '-40px', 
+                    marginLeft: '405px', 
+                    marginTop: '-41px', 
                     opacity: 0, 
                     width: '200px', 
                     height: '100px', 

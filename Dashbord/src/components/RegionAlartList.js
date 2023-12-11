@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 // import AlarmIcon from '@material-ui/icons/Alarm';
 // import WarningIcon from '@mui/icons-material/Warning';
 const data = [
@@ -19,7 +19,7 @@ const data = [
   { id: 15, message: "CB 30152 SPRING DISCHARGED OPERATING MECHANISM CHARGED" },
   { id: 16, message: "CB 30152 OPERATING MECHANISM BLOCKED" },
   { id: 17, message: "LEVER INSERTED" },
-  { id: 18, message: "SF6 LOW ALARM MONITORING SF6 UNDERPRESSURE / OVERPRESSURE" },
+  { id: 18, message: "SF6 LOW ALARM MONITORING SF6 UNDERPRESSURE" },
   { id: 19, message: "DC MCB NOT TRIPPED" },
   { id: 20, message: "86 LOCKOUT OPERATED" },
   { id: 21, message: "TRIP CIRCUIT-1 TC-1 FAIL" },
@@ -27,6 +27,19 @@ const data = [
 ];
 
 const DataList = () => {
+  useEffect(() => {
+    const handleWheel = (event) => {
+        if (event.ctrlKey === true) {
+            event.preventDefault();
+        }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+        window.removeEventListener('wheel', handleWheel, { passive: false });
+    };
+  }, []);
   return (
     <div style={styles.dataListContainer}>
       {data.map((item, index) => (
@@ -46,13 +59,19 @@ const styles = {
     flexDirection: 'row',
   },
   item: {
-    width: '50%', // This will create two columns
-    padding: '10px',
+    width: '50%',
+    padding: '8px',
+    // paddingLeft: '10px',
+    marginTop:'1.5px',
+    marginBottom:'1.5px',
+    paddingLeft:'20px',
+
     boxSizing: 'border-box',
-    borderBottom: '1px solid #ccc', // Optional: adds a line between items
+    borderBottom: '1px solid #ccc', 
   },
   text: {
-    fontSize: '10px', // Sets the font size to 10px
+    fontSize: '14px', 
+    fontFamily: 'SF-UI, sans-serif',
   }
 };
 

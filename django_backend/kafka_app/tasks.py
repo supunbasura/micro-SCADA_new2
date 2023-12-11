@@ -29,13 +29,16 @@ def kafka_consumer():
             continue
 
         payload = message.value().decode('utf-8')
-        print(payload)
-        book_data = json.loads(payload)
-        # send the message to the frontend
-        async_to_sync(channel_layer.group_send)('simple_message_group', {
-            'type': 'send_simple_message',
-            'message': book_data
-        })
+        
+        try:
+            book_data = json.loads(payload)
+            # send the message to the frontend
+            async_to_sync(channel_layer.group_send)('simple_message_group', {
+                'type': 'send_simple_message',
+                'message': book_data
+            })
+        except json.JSONDecodeError:
+            print(f"Invalid JSON received: {payload}")
     
     consumer.close()
     

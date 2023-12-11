@@ -19,6 +19,8 @@
   
   .nav-link {
     text-align: center; /* Center text in the nav link columns */
+    font-family: 'SF-UI', Arial, sans-serif;
+    font-weight: bold;
   }
   
   .nav-link a {

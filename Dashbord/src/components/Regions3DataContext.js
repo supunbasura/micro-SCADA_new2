@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react';
 export const Regions3DataContext = createContext();
 
 export const Regions3DataProvider = ({ children }) => {
-  const [currentValue, setCurrentValue] = useState("0");
-  const [voltageValue, setVoltageValue] = useState("0");
-  const [frequency, setFrequency] = useState("0");
-  const [power, setPower] = useState("0");
+  const [currentValue, setCurrentValue] = useState(" ");
+  const [voltageValue, setVoltageValue] = useState(" ");
+  const [frequency, setFrequency] = useState(" ");
+  const [power, setPower] = useState(" ");
 
   const value = {
     currentValue, setCurrentValue,

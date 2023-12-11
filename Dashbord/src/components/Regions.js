@@ -86,7 +86,6 @@ function Regions() {
         socket.onmessage = function(event) {
             const data = JSON.parse(event.data);
             setIsSwitchedOn(data.message.CB_POS);
-
             setCurrentValue(data.message.CURRENT);
             setVoltageValue(data.message.VOLTAGE);
             setFrequency(data.message.FREQ);

@@ -88,6 +88,44 @@ def on_message(client, userdata, message):
             connection.commit()
             print("Data saved to TimescaleDB.")
 
+
+            # insert_query_template = """
+            #     INSERT INTO {} (timeStamp,ioa,value)
+            #     VALUES (%s,%s,%s);
+            # """
+
+            # for data_entry in book_data:
+            #     table_name = None
+            #     type = data_entry.get("Type", "")
+
+            #     if type == 30:
+            #         table_name = 'kafka_app_singlepointindication'
+                    
+            #     if type == 46:
+            #         table_name = 'kafka_app_controls'
+                    
+            #     if type == 31:
+            #         table_name = 'kafka_app_doublepointindication'
+                
+            #     if table_name:
+            #         timestamp = data_entry["Timestamp"]
+            #         ioa = data_entry["Address"]
+            #         value = data_entry["Value"]
+
+            #         insert_query = insert_query_template.format(table_name)
+
+            #         try:
+            #             cursor = connection.cursor()
+            #             cursor.execute(insert_query, (timestamp, ioa, value))
+            #             connection.commit()
+            #             print("Data saved to TimescaleDB.")
+            #         except Exception as e:
+            #             print(f"Error saving to TimescaleDB: {e}")
+            #     else:
+            #         print("No valid table name found for the data entry.")
+
+
+            
         except json.JSONDecodeError:
             print("Failed to decode JSON.")
         except Exception as e:

@@ -21,7 +21,7 @@ function Login() {
     return () => {
         window.removeEventListener('wheel', handleWheel, { passive: false });
     };
-}, []); 
+}, []);
   return (
       <div className="content">
         <div className="image-container">

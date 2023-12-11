@@ -26,10 +26,10 @@ MQTT_TOPIC = "matt-client"
 
 @api_view(['POST'])
 def publish_mqtt_message(request):
-    VOLTAGE ='0'
-    CURRENT = '0'
-    FREQ = '0'
-    POW = '0'
+    VOLTAGE =' '
+    CURRENT = ' '
+    FREQ = ' '
+    POW = ' '
     statusviewer= 'Device - WebApp'
     description = "QA1 Switched On : Location-Katugasthota "
     button_status = request.data.get("status", "10")
