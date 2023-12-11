@@ -16,9 +16,31 @@ function Footer() {
   const [last_book_element, setLastElementBook] = useState(null);
   const { setLastBookElement } = useContext(LastBookContext);
 
-  useEffect(() => {
+//   useEffect(() => {
+//     const intervalId = setInterval(() => {
+//         fetch("http://localhost:8000/api/books/")
+//             .then(response => response.json())
+//             .then(data => {
+//                 let parsedData = JSON.parse(data);
+//                 if (parsedData.length > 0) {
+//                     const lastElement = parsedData.slice(-1)[0];
+//                     const lastFive = parsedData.slice(-5);
+//                     setLastBook(lastFive);
+//                     setLastBookElement(lastElement);
+//                     console.log("Last book Element : ",lastElement);
+//                 } else {
+//                     console.log("No books received");
+//                 }
+//             })
+//             .catch(error => console.error("Error fetching data:", error));
+//     }, 2000);
+
+//     return () => clearInterval(intervalId);
+// }, []);
+
+useEffect(() => {
     const intervalId = setInterval(() => {
-        fetch("http://localhost:8000/api/books/")
+        fetch("http://localhost:8000/api/spindication/")
             .then(response => response.json())
             .then(data => {
                 let parsedData = JSON.parse(data);
@@ -26,10 +48,8 @@ function Footer() {
                     const lastElement = parsedData.slice(-1)[0];
                     const lastFive = parsedData.slice(-5);
                     setLastBook(lastFive);
-                    // setLastElementBook(lastElement);
                     setLastBookElement(lastElement);
                     console.log("Last book Element : ",lastElement);
-                    // console.log("Last Element:", lastFive);
                 } else {
                     console.log("No books received");
                 }
@@ -37,7 +57,7 @@ function Footer() {
             .catch(error => console.error("Error fetching data:", error));
     }, 2000);
 
-    return () => clearInterval(intervalId); // Cleanup on unmount
+    return () => clearInterval(intervalId);
 }, []);
 
 
@@ -50,20 +70,28 @@ function Footer() {
                     <thead>
                     <tr>
                         <th className="col-id">ID</th>
-                        <th className="col-status">Status</th>
-                        <th className="col-received-at">Received At</th>
-                        <th className="col-description">Description</th>
-                        <th className="col-statusviewer">statusviewer</th>
+                        <th className="col-timestamp">TimeStamp</th>
+                        <th className="col-description"> Description</th>
+                        <th className="col-address">Address</th>
+                        <th className="col-value">Value</th>
+                        <th className="col-topic">topic</th>
                     </tr>
                     </thead>
                     <tbody>
                         {[...lastBook].reverse().map((book, index) => (
                             <tr key={index}>
-                                <td>{book.pk ?? 'No ID available'}</td>
+                                {/* <td>{book.pk ?? 'No ID available'}</td>
                                 <td>{book.fields.status ?? 'No status available'}</td>
                                 <td>{book.fields.received_at ? new Date(book.fields.received_at).toLocaleString() : 'No date available'}</td>
                                 <td>{book.fields.description ?? 'No description available'}</td>
-                                <td>{book.fields.statusviewer ?? 'No statusviewer available'}</td>
+                                <td>{book.fields.statusviewer ?? 'No statusviewer available'}</td> */}
+
+                                <td>{book.pk ?? 'No ID available'}</td>
+                                <td>{book.fields.timestamp ?? 'No timeStamp available'}</td>
+                                <td>{book.fields.description ?? 'No description available'}</td>
+                                <td>{book.fields.ioa ?? 'No ioa available'}</td>
+                                <td>{book.fields.value ?? 'No value available'}</td>
+                                <td>{book.fields.topic ?? 'No topic available'}</td>
                             </tr>
                         ))}
                     </tbody>

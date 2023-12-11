@@ -12,6 +12,7 @@ from django.db import transaction
 import asyncio
 from rest_framework.decorators import api_view
 from .models import Book
+from .models import SinglePointIndication
 from django.core.cache import cache
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
@@ -41,10 +42,14 @@ def publish_mqtt_message(request):
 
     return JsonResponse({'redirect_url': 'http://localhost:3000/'})
 
+# @api_view(['GET'])
+# def fetch_books(request):
+#     books = Book.objects.all()
+#     data = serializers.serialize('json', books)
+#     return JsonResponse(data, safe=False)
+
 @api_view(['GET'])
-def fetch_books(request):
-    books = Book.objects.all()
-    data = serializers.serialize('json', books)
+def fetch_singlepointindication(request):
+    spIndication = SinglePointIndication.objects.all()
+    data = serializers.serialize('json', spIndication)
     return JsonResponse(data, safe=False)
-
-
