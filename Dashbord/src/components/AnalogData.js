@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { Regions3DataContext } from './Regions3DataContext';
 
 function AnalogData() {
-  const { currentValue, voltageValue, frequency, power } = useContext(Regions3DataContext);
+  // const { currentValue, voltageValue, frequency, power } = useContext(Regions3DataContext);
+  const { currentRphase,currentYphase,currentBphase, voltageRphase,voltageYphase,voltageBphase, frequency, ApparentPower,ReactivePower } = useContext(Regions3DataContext);
   // console.log("CUrrent value::::",currentValue);
 
   // Define ranges for row colors
@@ -30,7 +31,7 @@ function AnalogData() {
     textAlign: 'center',
     padding: '10px', 
     // fontWeight: 'bold', 
-    fontSize: '20px',
+    fontSize: '17px',
     fontFamily: 'SF-UI, sans-serif',
     
   };
@@ -45,7 +46,7 @@ function AnalogData() {
   };
 
   return (
-    <table style={{ width: '100%',marginTop:'35px'}}>
+    <table style={{ width: '100%'}}>
       <thead>
         <tr>
           <th style={headerStyle}>Parameter</th>
@@ -53,7 +54,7 @@ function AnalogData() {
         </tr>
       </thead>
       <tbody>
-        <tr style={{ backgroundColor: getRowColor(voltageValue, 'voltage') }}>
+        {/* <tr style={{ backgroundColor: getRowColor(voltageValue, 'voltage') }}>
           <td style={cellStyle}>Voltage Value</td>
           <td style={cellStyle}>{voltageValue} kV</td>
         </tr>
@@ -80,6 +81,45 @@ function AnalogData() {
         <tr style={{ backgroundColor: getRowColor(power, 'power') }}>
           <td style={cellStyle}>Power Value</td>
           <td style={cellStyle}>{power} p</td>
+        </tr> */}
+{/* currentRphase,currentYphase,currentBphase, voltageRphase,voltageYphase,voltageBphase, frequency, ApparentPower,ReactivePower */}
+        <tr style={{ backgroundColor: getRowColor(voltageRphase, 'voltage') }}>
+          <td style={cellStyle}>Voltage R Phase</td>
+          <td style={cellStyle}>{voltageRphase} kV</td>
+        </tr>
+        <tr style={{ backgroundColor: getRowColor(voltageYphase, 'voltage') }}>
+          <td style={cellStyle}>Voltage Y Phase</td>
+          <td style={cellStyle}>{voltageYphase} kV</td>
+        </tr>
+        <tr style={{ backgroundColor: getRowColor(voltageBphase, 'voltage') }}>
+          <td style={cellStyle}>Voltage B Phase</td>
+          <td style={cellStyle}>{voltageBphase} kV</td>
+        </tr>
+
+        <tr style={{ backgroundColor: getRowColor(currentRphase, 'current') }}>
+          <td style={cellStyle}>Current R Phase</td>
+          <td style={cellStyle}>{currentRphase} A</td>
+        </tr>
+        <tr style={{ backgroundColor: getRowColor(currentYphase, 'current') }}>
+          <td style={cellStyle}>Current Y Phase</td>
+          <td style={cellStyle}>{currentYphase} A</td>
+        </tr>
+        <tr style={{ backgroundColor: getRowColor(currentBphase, 'current') }}>
+          <td style={cellStyle}>Current B Phase</td>
+          <td style={cellStyle}>{currentBphase} A</td>
+        </tr>
+
+        <tr style={{ backgroundColor: getRowColor(frequency, 'frequency') }}>
+          <td style={cellStyle}>Frequency</td>
+          <td style={cellStyle}>{frequency} Hz</td>
+        </tr>
+        <tr style={{ backgroundColor: getRowColor(ApparentPower, 'power') }}>
+          <td style={cellStyle}>ApparentPower</td>
+          <td style={cellStyle}>{ApparentPower} p</td>
+        </tr>
+        <tr style={{ backgroundColor: getRowColor(ReactivePower, 'power') }}>
+          <td style={cellStyle}>ReactivePower</td>
+          <td style={cellStyle}>{ReactivePower} p</td>
         </tr>
       </tbody>
     </table>

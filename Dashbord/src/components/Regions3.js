@@ -21,7 +21,9 @@ import { Regions3DataContext } from './Regions3DataContext';
 function Regions3() {
     const { lastBookElement } = useContext(LastBookContext);
 
-    const { currentValue, setCurrentValue, voltageValue, setVoltageValue, frequency, setFrequency, power, setPower } = useContext(Regions3DataContext);
+
+    // const { currentValue, setCurrentValue, voltageValue, setVoltageValue, frequency, setFrequency, power, setPower } = useContext(Regions3DataContext);
+    const { currentRphase, setcurrentRphase,currentYphase, setcurrentYphase,currentBphase, setcurrentBphase,voltageRphase, setvoltageRphase,voltageYphase, setvoltageYphase,voltageBphase, setvoltageBphase, frequency, setFrequency, ApparentPower, setApparentPower, ReactivePower, setReactivePower } = useContext(Regions3DataContext);
 
     // const initialSwitchState = lastBookElement ? lastBookElement.fields.status :"01";
     // const [isSwitchedOn, setIsSwitchedOn] = useState(initialSwitchState);
@@ -132,8 +134,15 @@ function Regions3() {
             data.message.forEach(item => {
                 console.log(item);
 
+// const { currentRphase, setcurrentRphase,currentYphase, setcurrentYphase,currentBphase, setcurrentBphase,voltageRphase, setvoltageRphase,voltageYphase, setvoltageYphase,voltageBphase, setvoltageBphase, frequency, setFrequency, ApparentPower, setApparentPower, ReactivePower, setReactivePower } = useContext(Regions3DataContext);
                 if (item.Type === 9 && item.Address === 1000) {
-                    setCurrentValue(item.Value);
+                    setcurrentRphase(item.Value);
+                }
+                if (item.Type === 9 && item.Address === 1001) {
+                    setcurrentYphase(item.Value);
+                }
+                if (item.Type === 9 && item.Address === 1002) {
+                    setcurrentBphase(item.Value);
                 }
 
                 if (item.Type === 9 && item.Address === 1003) {
@@ -141,11 +150,22 @@ function Regions3() {
                 }
 
                 if (item.Type === 9 && item.Address === 1004) {
-                    setVoltageValue(item.Value);
+                    setvoltageRphase(item.Value);
+                }
+
+                if (item.Type === 9 && item.Address === 1005) {
+                    setvoltageYphase(item.Value);
+                }
+
+                if (item.Type === 9 && item.Address === 1006) {
+                    setvoltageBphase(item.Value);
                 }
 
                 if (item.Type === 9 && item.Address === 1007) {
-                    setPower(item.Value);
+                    setApparentPower(item.Value);
+                }
+                if (item.Type === 9 && item.Address === 1008) {
+                    setReactivePower(item.Value);
                 }
 
                 // Check if type is 46 and address is 5000
