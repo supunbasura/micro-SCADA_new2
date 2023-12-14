@@ -48,8 +48,30 @@ useEffect(() => {
                     const lastElement = parsedData.slice(-1)[0];
                     const lastFive = parsedData.slice(-5);
                     setLastBook(lastFive);
+                    // setLastBookElement(lastElement);
+                    // console.log("Last book Element : ",lastElement);
+                } else {
+                    console.log("No books received");
+                }
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+}, []);
+
+useEffect(() => {
+    const intervalId = setInterval(() => {
+        fetch("http://localhost:8000/api/Controls/")
+            .then(response => response.json())
+            .then(data => {
+                let parsedData = JSON.parse(data);
+                if (parsedData.length > 0) {
+                    const lastElement = parsedData.slice(-1)[0];
+                    // const lastFive = parsedData.slice(-5);
+                    // setLastBook(lastFive);
+                    console.log("lastELE",lastElement);
                     setLastBookElement(lastElement);
-                    console.log("Last book Element : ",lastElement);
                 } else {
                     console.log("No books received");
                 }

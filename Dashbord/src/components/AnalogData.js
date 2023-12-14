@@ -3,7 +3,7 @@ import { Regions3DataContext } from './Regions3DataContext';
 
 function AnalogData() {
   const { currentValue, voltageValue, frequency, power } = useContext(Regions3DataContext);
-  console.log("CUrrent value::::",currentValue);
+  // console.log("CUrrent value::::",currentValue);
 
   // Define ranges for row colors
   const getRowColor = (value, type) => {

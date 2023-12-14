@@ -31,23 +31,45 @@ function Regions3() {
     const [isToggling, setIsToggling] = useState(false);
 
 
+    //load last value of the button status
+    // useEffect(() => {
+    //     if (lastBookElement && lastBookElement.fields) {
+    //         switch (lastBookElement.fields.status) {
+    //             case 'on':
+    //                 setIsSwitchedOn('01');
+    //                 break;
+    //             case 'off':
+    //                 setIsSwitchedOn('10');
+    //                 break;
+    //             case 'Error! 11':
+    //                 setIsSwitchedOn('11');
+    //                 break;
+    //             case 'Error! 00':
+    //                 setIsSwitchedOn('00');
+    //                 break;
+    //             default:
+    //                 break;
+    //         }
+    //     }
+    // }, [lastBookElement]);
+
     useEffect(() => {
         if (lastBookElement && lastBookElement.fields) {
-            switch (lastBookElement.fields.status) {
-                case 'on':
-                    setIsSwitchedOn('01');
+            console.log("lastvalue",lastBookElement.fields.value);
+            switch (lastBookElement.fields.value) {
+                case "1":
+                    setIsSwitchedOn(1);
                     break;
-                case 'off':
-                    setIsSwitchedOn('10');
+                case "2":
+                    setIsSwitchedOn(2);
                     break;
-                case 'Error! 11':
-                    setIsSwitchedOn('11');
+                case "0":
+                    setIsSwitchedOn(0);
                     break;
-                case 'Error! 00':
-                    setIsSwitchedOn('00');
+                case "3":
+                    setIsSwitchedOn(3);
                     break;
                 default:
-                    // Handle other cases or set a default value
                     break;
             }
         }
@@ -69,8 +91,8 @@ function Regions3() {
     
 
     const handleToggle = async () => {
-        const newStatus = isSwitchedOn === "01" ? "10" : "01";
-        const confirmationMessage = newStatus === "01" 
+        const newStatus = isSwitchedOn === 1 ? 2 : 1;
+        const confirmationMessage = newStatus === 2 
             ? "Are you sure you want to turn on?" 
             : "Are you sure you want to turn off?";
 
@@ -105,12 +127,43 @@ function Regions3() {
 
         socket.onmessage = function(event) {
             const data = JSON.parse(event.data);
-            console.log(data.message.CB_POS);
-            setIsSwitchedOn(data.message.CB_POS);
-            setCurrentValue(data.message.CURRENT);
-            setVoltageValue(data.message.VOLTAGE);
-            setFrequency(data.message.FREQ);
-            setPower(data.message.POW);
+            console.log(data.message);
+
+            data.message.forEach(item => {
+                console.log(item);
+
+                if (item.Type === 9 && item.Address === 1000) {
+                    setCurrentValue(item.Value);
+                }
+
+                if (item.Type === 9 && item.Address === 1003) {
+                    setFrequency(item.Value);
+                }
+
+                if (item.Type === 9 && item.Address === 1004) {
+                    setVoltageValue(item.Value);
+                }
+
+                if (item.Type === 9 && item.Address === 1007) {
+                    setPower(item.Value);
+                }
+
+                // Check if type is 46 and address is 5000
+                if (item.Type === 46 && item.Address === 5000) {
+                    setIsSwitchedOn(item.Value);
+                    console.log("5000 value:",item.Value);
+                }
+    
+            });
+
+            // console.log(data.message.CB_POS);
+            console.log("Value",isSwitchedOn);
+
+            // setIsSwitchedOn(data.message.CB_POS);
+            // setCurrentValue(data.message.CURRENT);
+            // setVoltageValue(data.message.VOLTAGE);
+            // setFrequency(data.message.FREQ);
+            // setPower(data.message.POW);
         };
 
         socket.onopen = function(event) {
@@ -128,13 +181,13 @@ function Regions3() {
             <div>
                 <img src={SwitchVisible} alt="Switch visible" style={{width:'100%',marginBottom:'-75px'}}/>
                 <div>
-                    {isSwitchedOn === "01" ? (
+                    {isSwitchedOn === 2 ? (
                         <img src={SwitchOnVisible } alt="Switch on SVG" className="switch_on" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>
                     )
-                    : isSwitchedOn === "10" ? (
+                    : isSwitchedOn === 1 ? (
                         <img src={SwitchOffVisible} alt="Switch off SVG" className="switch_off" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>
                     )
-                    : isSwitchedOn === "00" ? (
+                    : isSwitchedOn === 0 ? (
                         <img src={Switch_00_visible} alt="Switch 00 SVG" className="switch_00" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>
                     ):(
                         <img src={Switch_11_visible} alt="Switch 11 SVG" className="switch_11" style={{width:'50%' ,marginTop:'-150px',marginLeft:'256px'}}/>

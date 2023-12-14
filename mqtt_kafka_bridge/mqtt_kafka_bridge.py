@@ -40,6 +40,7 @@ mqtt.Client.connected_flag = False
 # broker_address = "56044a04a814414994ecad0b8b465fef.s1.eu.hivemq.cloud"
 broker_address="broker.hivemq.com"
 broker_port = 8883
+# MQTT_TOPIC = "TestTopic"
 MQTT_TOPIC = "TestTopic"
 # user = "supun"
 # password = "SBGssc20001227"
@@ -89,6 +90,7 @@ def on_message(client, userdata, message):
             # print("Data saved to TimescaleDB.")
 
             address_descriptions = {
+                # single point
                 10000: "Panel Control position Local/ Supervisory",
                 10001: "Relay Protection Setting Group Position",
                 10002: "Over Current Operated",
@@ -124,7 +126,69 @@ def on_message(client, userdata, message):
                 10048: "SF6 Low Pressure Alarm",
                 10049: "SF6 Low Pressure Lock Out",
                 10050: "11kV panel Auxiliary DC MCB Trip/ Off",
-                10051: "11kV panel Auxiliary AC MCB Trip/ Off"
+                10051: "11kV panel Auxiliary AC MCB Trip/ Off",
+                
+                # Double point
+                8000: "CB POSITION",
+                8001: "DISC POSITION",
+                8002: "ES POSITION",
+                8010: "CB POSITION",
+                8011: "DISC POSITION",
+                8012: "ES POSITION",
+                8020: "CB POSITION",
+                8021: "DISC-1 POSITION",
+                8022: "DISC-2 POSITION",
+                8023: "ES-1 POSITION",
+                8024: "ES-2 POSITION",
+                
+                # Controls
+                5000: "Circuit Breaker Open/Close",
+                5001: "Disconnector Open/ Close",
+                5002: "Relay Alarm/ Trip Indication Reset",
+                5010: "Circuit Breaker Open/Close",
+                5011: "Disconnector Open/ Close",
+                5012: "Relay Alarm/ Trip Indication Reset",
+                5020: "Circuit Breaker Open/Close",
+                5021: "Disconnector-1 Open/ Close",
+                5022: "Disconnector-2 Open/ Close",
+                
+                # Messurements
+                1000: "CURRENT R PHASE",
+                1001: "CURRENT Y PHASE",
+                1002: "CURRENT B PHASE",
+                1003: "FREQUENCY",
+                1004: "VOLTAGE R PHASE",
+                1005: "VOLTAGE Y PHASE",
+                1006: "VOLTAGE B PHASE",
+                1007: "APPARENT POWER",
+                1008: "REACTIVE POWER",
+                1009: "APPARENT POWER",
+                1010: "REACTIVE POWER",
+                1020: "CURRENT R PHASE",
+                1021: "CURRENT Y PHASE",
+                1022: "CURRENT B PHASE",
+                1023: "FREQUENCY",
+                1024: "VOLTAGE R PHASE",
+                1025: "VOLTAGE Y PHASE",
+                1026: "VOLTAGE B PHASE",
+                1027: "APPARENT POWER",
+                1028: "REACTIVE POWER",
+                1029: "APPARENT POWER",
+                1030: "REACTIVE POWER",
+                1040: "CURRENT R PHASE",
+                1041: "CURRENT Y PHASE",
+                1042: "CURRENT B PHASE",
+                1043: "FREQUENCY",
+                1044: "VOLTAGE R PHASE - BUS 01",
+                1045: "VOLTAGE Y PHASE - BUS 01",
+                1046: "VOLTAGE B PHASE - BUS 01",
+                1047: "VOLTAGE R PHASE - BUS 02",
+                1048: "VOLTAGE Y PHASE - BUS 02",
+                1049: "VOLTAGE B PHASE - BUS 02",
+                1050: "APPARENT POWER",
+                1051: "REACTIVE POWER",
+                1052: "APPARENT POWER",
+                1053: "REACTIVE POWER"
             }
 
 
@@ -136,9 +200,6 @@ def on_message(client, userdata, message):
 
             
             for data_entry in book_data:
-                # if 'description' not in data_entry or data_entry["description"] is None:
-                #     description = f'Address {data_entry["Address"]}'
-                    
                 if 'topic' not in data_entry or data_entry["topic"] is None:
                     topic = 'CEB_LBS_1_QQ'
                     
@@ -148,17 +209,21 @@ def on_message(client, userdata, message):
                 table_name = None
                 type = data_entry.get("Type", "")
                 
-                
-
                 if type == 30:
                     table_name = 'kafka_app_singlepointindication'
                     
+                #comment           
+                if type == 46:
+                    table_name = 'kafka_app_controls'
                     
-                # if type == 46:
-                #     table_name = 'kafka_app_controls'
-                    
-                # if type == 31:
-                #     table_name = 'kafka_app_doublepointindication'
+                if type == 31:
+                    table_name = 'kafka_app_doublepointindication'
+
+                if type == 9:
+                    table_name = 'kafka_app_measurements'
+                # endcomment
+                
+                
                 
                 if table_name:
                     timestamp = data_entry["Timestamp"]
