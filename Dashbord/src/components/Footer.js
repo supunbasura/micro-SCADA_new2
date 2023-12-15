@@ -12,9 +12,10 @@ function Footer() {
   ]);
 
   const [data, setData] = useState([]);
-  const [lastBook, setLastBook] = useState(null);
+  const [lastBook, setLastBook] = useState([]);
   const [last_book_element, setLastElementBook] = useState(null);
   const { setLastBookElement } = useContext(LastBookContext);
+  
 
 //   useEffect(() => {
 //     const intervalId = setInterval(() => {
@@ -45,11 +46,8 @@ useEffect(() => {
             .then(data => {
                 let parsedData = JSON.parse(data);
                 if (parsedData.length > 0) {
-                    const lastElement = parsedData.slice(-1)[0];
                     const lastFive = parsedData.slice(-5);
-                    setLastBook(lastFive);
-                    // setLastBookElement(lastElement);
-                    // console.log("Last book Element : ",lastElement);
+                    // setLastBook(lastFive);
                 } else {
                     console.log("No books received");
                 }
@@ -82,6 +80,26 @@ useEffect(() => {
     return () => clearInterval(intervalId);
 }, []);
 
+useEffect(() => {
+    const intervalId = setInterval(() => {
+        fetch("http://localhost:8000/api/fetchEvent/")
+            .then(response => response.json())
+            .then(data => {
+                console.log("data",data);
+                // let parsedData = JSON.parse(data);
+                if (data.length > 0) {
+                    // const lastFive = data.slice(-5);
+                    setLastBook(data);
+                } else {
+                    console.log("No books received");
+                }
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+}, []);
+
 
 
 
@@ -100,22 +118,16 @@ useEffect(() => {
                     </tr>
                     </thead>
                     <tbody>
-                        {[...lastBook].reverse().map((book, index) => (
-                            <tr key={index}>
-                                {/* <td>{book.pk ?? 'No ID available'}</td>
-                                <td>{book.fields.status ?? 'No status available'}</td>
-                                <td>{book.fields.received_at ? new Date(book.fields.received_at).toLocaleString() : 'No date available'}</td>
-                                <td>{book.fields.description ?? 'No description available'}</td>
-                                <td>{book.fields.statusviewer ?? 'No statusviewer available'}</td> */}
-
-                                <td>{book.pk ?? 'No ID available'}</td>
-                                <td>{book.fields.timestamp ?? 'No timeStamp available'}</td>
-                                <td>{book.fields.description ?? 'No description available'}</td>
-                                <td>{book.fields.ioa ?? 'No ioa available'}</td>
-                                <td>{book.fields.value ?? 'No value available'}</td>
-                                <td>{book.fields.topic ?? 'No topic available'}</td>
-                            </tr>
-                        ))}
+                    {[...lastBook].reverse().map((book, index) => (
+                        <tr key={index}>
+                            <td>{book.fields?.id ?? 'No ID available'}</td>
+                            <td>{book.fields?.timestamp ? new Date(book.fields.timestamp).toLocaleString() : 'No timeStamp available'}</td>
+                            <td>{book.fields?.description ?? 'No description available'}</td>
+                            <td>{book.fields?.ioa ?? 'No ioa available'}</td>
+                            <td>{book.fields?.value ?? 'No value available'}</td>
+                            <td>{book.fields?.topic ?? 'No topic available'}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             ) : (

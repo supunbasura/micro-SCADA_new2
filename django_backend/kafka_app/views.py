@@ -14,6 +14,11 @@ from rest_framework.decorators import api_view
 from .models import Book
 from .models import SinglePointIndication
 from .models import Controls
+from .models import Measurements
+from .models import DoublePointIndication
+from django.db.models import OuterRef, Subquery
+
+
 from django.core.cache import cache
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
@@ -23,6 +28,8 @@ from .mqtt_client import publish_message
 from django.core import serializers
 from datetime import datetime
 from rest_framework.decorators import api_view
+
+from .Serializers import UnionSerializer
 
 mqtt_thread_started = False
 
@@ -40,7 +47,7 @@ def publish_mqtt_message(request):
     Type2=46
     Address2=5001
 
-    status_description = [{"Type": Type, "Address": Address, "Value": Value, "Timestamp": Timestamp}, {"Type": Type2, "Address": Address2, "Value": Value, "Timestamp": Timestamp}]
+    status_description = [{"Type": Type, "Address": Address, "Value": Value, "Timestamp": Timestamp}]
     # status_description={"Type":Type, "Address":Address, "Value":Value,"Timestamp":Timestamp}
     
     
@@ -76,7 +83,31 @@ def fetch_singlepointindication(request):
 def fetch_Controls(request):
     # lbscontrols = Controls.objects.filter(ioa=5000).order_by('timestamp').first()
     lbscontrols = Controls.objects.filter(ioa=5000).order_by('timestamp').all()
-    # lbscontrols = Controls.objects.all()
     data = serializers.serialize('json', lbscontrols)
-    # print("data",data);
     return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def fetch_EventViewer(request):
+    # Subqueries to get the latest record for each model
+    spi_subquery = SinglePointIndication.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+    controls_subquery = Controls.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+    measurements_subquery = Measurements.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+    dpi_subquery = DoublePointIndication.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+
+    # Annotate and combine all the queries
+    spi = SinglePointIndication.objects.annotate(latest=Subquery(spi_subquery.values('timestamp')[:1]))
+    controls = Controls.objects.annotate(latest=Subquery(controls_subquery.values('timestamp')[:1]))
+    measurements = Measurements.objects.annotate(latest=Subquery(measurements_subquery.values('timestamp')[:1]))
+    dpi = DoublePointIndication.objects.annotate(latest=Subquery(dpi_subquery.values('timestamp')[:1]))
+
+    # Union and order by 'latest', then limit to 5
+    combined = spi.union(controls, measurements, dpi).order_by('-latest')[:5]
+
+    # Serialize the combined queryset using UnionSerializer
+    serializer = UnionSerializer(combined, many=True)
+
+    # Return the serialized data in a Response object
+    print(serializer.data);
+    return Response(serializer.data)
+
+    
