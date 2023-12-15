@@ -36,7 +36,7 @@ const Navbar = () => {
         <img src={CEBlogo} alt="Systems Logo" className="logo" />
       </div>
       
-      {renderNavLink('/network-diagram', 'Network Diagram')}
+      {renderNavLink('http://127.0.0.1:5501/', 'GIS Network')}
       {renderNavLink('/regions2', 'Regions')}
       {renderNavLink('/event-viewer', 'Event Viewer')}
       {renderNavLink('/alarm-viewer', 'Alarm Viewer')}

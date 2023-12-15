@@ -22,9 +22,9 @@
   background-color: #e7e7e7; /* Header background */
   padding-top:10px;
 }
-.col-id { width: 10%; }
-.col-timestamp { width: 10%; }
-.col-description { width: 10%; }
-.col-address { width: 10%; }
-.col-value {width: 10%; }
-.col-topic {width: 10%; }
+.col-id { width: 2%; }
+.col-timestamp { width: 7%; }
+.col-description { width: 15%; }
+.col-address { width: 5%; }
+.col-value {width: 3%; }
+.col-topic {width: 7%; }

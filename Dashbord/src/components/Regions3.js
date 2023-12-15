@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect ,useContext} from 'react';
+import { ConfirmDialog } from 'primereact/confirmdialog';
+import Swal from 'sweetalert2';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -16,8 +18,7 @@ import DataList from './RegionAlartList'
 import '../Styling/Regions.css';
 import LastBookContext from './LastBookContext';
 import { Regions3DataContext } from './Regions3DataContext';
-
-
+  
 function Regions3() {
     const { lastBookElement } = useContext(LastBookContext);
 
@@ -97,12 +98,36 @@ function Regions3() {
         const confirmationMessage = newStatus === 2 
             ? "Are you sure you want to turn on?" 
             : "Are you sure you want to turn off?";
+        
+        const confirmationSuccess = newStatus === 2 
+            ? "Switched On" 
+            : "Switched Off";
 
-        const isConfirmed = window.confirm(confirmationMessage);
-        if (!isConfirmed) {
+        // const isConfirmed = window.confirm(confirmationMessage);
+        // if (!isConfirmed) {
+        //     return;
+        // }
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: confirmationMessage,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#008000',
+            cancelButtonColor: '#C70039',
+            confirmButtonText: 'Yes, do it!',
+        });
+        if (result.isConfirmed) {
+            Swal.fire({
+              title: confirmationSuccess,
+            //   text: "You {confirmationSuccess}.",
+              icon: "success",
+              confirmButtonColor: '#008000',
+            });
+          }    
+        if (!result.isConfirmed) {
             return;
         }
-
+    
         setIsToggling(true);
 
         try {
@@ -118,7 +143,13 @@ function Regions3() {
                 setIsSwitchedOn(data.status);
             }
         } catch (error) {
-            alert("Failed to toggle:", error);
+            // alert("Failed to toggle:", error);
+            Swal.fire({
+                title: "Failed to toggle",
+              //   text: "You {confirmationSuccess}.",
+                icon: "error",
+                confirmButtonColor: '#008000',
+              });
         } finally {
             setIsToggling(false);
         }
@@ -214,6 +245,7 @@ function Regions3() {
                     )
                 }
                 </div>
+                
                 <div onClick={handleToggle} style={{ 
                     marginLeft: '405px', 
                     marginTop: '-41px', 

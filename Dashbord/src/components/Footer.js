@@ -118,14 +118,14 @@ useEffect(() => {
                     </tr>
                     </thead>
                     <tbody>
-                    {[...lastBook].reverse().map((book, index) => (
+                    {[...lastBook].map((book, index) => (
                         <tr key={index}>
-                            <td>{book.fields?.id ?? 'No ID available'}</td>
-                            <td>{book.fields?.timestamp ? new Date(book.fields.timestamp).toLocaleString() : 'No timeStamp available'}</td>
-                            <td>{book.fields?.description ?? 'No description available'}</td>
-                            <td>{book.fields?.ioa ?? 'No ioa available'}</td>
-                            <td>{book.fields?.value ?? 'No value available'}</td>
-                            <td>{book.fields?.topic ?? 'No topic available'}</td>
+                            <td>{book.id ?? 'No ID available'}</td>
+                            <td>{book.timestamp ?? 'No timestamp available'}</td>
+                            <td>{book.description ?? 'No description available'}</td>
+                            <td>{book.ioa ?? 'No ioa available'}</td>
+                            <td>{book.value ?? 'No value available'}</td>
+                            <td>{book.topic ?? 'No topic available'}</td>
                         </tr>
                     ))}
                     </tbody>

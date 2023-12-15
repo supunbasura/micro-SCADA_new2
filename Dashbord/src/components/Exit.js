@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../Styling/Exit.css';
+import companyLogo from '../Images/Company_logo.png';
 
 function Exit() {
   useEffect(() => {
@@ -24,9 +25,13 @@ function Exit() {
   }, []); 
   return (
     <div className="exit-page">
+      <div>
+        {/* <img style={{width:"700px", height:"160px" ,marginTop:"40px", marginLeft:"600px",}} src={companyLogo} alt="CEB Logo" className="logo" /> */}
+        <img style={{width:"500px", height:"100px" ,marginTop:"40px"}} src={companyLogo} alt="CEB Logo" className="logo" />
+      </div>
       <div className="exit-content">
-        <h1 className="heading">Welcome to Our Website</h1>
-        <p>This is the exit page. You can provide some introductory content here.</p>
+        <h1 className="heading"><i>G</i>DIS</h1>
+        <p className='para'>GIS based Distribution Management System</p>
         <Link to="/login" className="login-button">Login</Link>
       </div>
     </div>

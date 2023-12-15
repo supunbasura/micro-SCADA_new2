@@ -23,7 +23,8 @@ function HomePage() {
         <div className="content">
           <Routes>
             <Route path="/" element={<Exit/>} />
-            <Route path="/network-diagram" element={<NetworkDiagram />} />
+            {/* <Route path="/network-diagram" element={<NetworkDiagram />} /> */}
+            <Route path="/network-diagram" />
             <Route path="/Regions" element={<Regions />} />
             <Route path="/Regions2" element={<Regions2 />} />
             <Route path="/Regions3" element={<Regions3 />} />

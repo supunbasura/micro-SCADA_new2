@@ -88,25 +88,20 @@ def fetch_Controls(request):
 
 @api_view(['GET'])
 def fetch_EventViewer(request):
-    # Subqueries to get the latest record for each model
     spi_subquery = SinglePointIndication.objects.filter(id=OuterRef('id')).order_by('-timestamp')
     controls_subquery = Controls.objects.filter(id=OuterRef('id')).order_by('-timestamp')
     measurements_subquery = Measurements.objects.filter(id=OuterRef('id')).order_by('-timestamp')
     dpi_subquery = DoublePointIndication.objects.filter(id=OuterRef('id')).order_by('-timestamp')
 
-    # Annotate and combine all the queries
     spi = SinglePointIndication.objects.annotate(latest=Subquery(spi_subquery.values('timestamp')[:1]))
     controls = Controls.objects.annotate(latest=Subquery(controls_subquery.values('timestamp')[:1]))
     measurements = Measurements.objects.annotate(latest=Subquery(measurements_subquery.values('timestamp')[:1]))
     dpi = DoublePointIndication.objects.annotate(latest=Subquery(dpi_subquery.values('timestamp')[:1]))
 
-    # Union and order by 'latest', then limit to 5
     combined = spi.union(controls, measurements, dpi).order_by('-latest')[:5]
 
-    # Serialize the combined queryset using UnionSerializer
     serializer = UnionSerializer(combined, many=True)
 
-    # Return the serialized data in a Response object
     print(serializer.data);
     return Response(serializer.data)
 

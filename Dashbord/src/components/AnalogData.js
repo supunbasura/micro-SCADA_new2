@@ -115,11 +115,11 @@ function AnalogData() {
         </tr>
         <tr style={{ backgroundColor: getRowColor(ApparentPower, 'power') }}>
           <td style={cellStyle}>ApparentPower</td>
-          <td style={cellStyle}>{ApparentPower} p</td>
+          <td style={cellStyle}>{ApparentPower} kVA</td>
         </tr>
         <tr style={{ backgroundColor: getRowColor(ReactivePower, 'power') }}>
           <td style={cellStyle}>ReactivePower</td>
-          <td style={cellStyle}>{ReactivePower} p</td>
+          <td style={cellStyle}>{ReactivePower} kVAr</td>
         </tr>
       </tbody>
     </table>

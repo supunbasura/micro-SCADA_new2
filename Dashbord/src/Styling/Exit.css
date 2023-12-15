@@ -47,14 +47,22 @@
     z-index: -1;
 }
 .heading{
-    color:rgb(46, 67, 84);
+    color:rgb(16, 67, 108);
+    margin-top:-50px;
+    /* margin-top: -380px; */
+}
+.para{
+  color:rgb(16, 67, 108);
+  margin-top:30px;
+  font-weight: bold;
 }
 
 .login-button {
   display: inline-block;
   width:400px;
   padding: 15px 20px;
-  margin-top: 20px;
+  margin-top: 60px;
+  margin-bottom: 150px;
   font-size: 26px;
   color: #fff; 
   background-color: #017080; 
