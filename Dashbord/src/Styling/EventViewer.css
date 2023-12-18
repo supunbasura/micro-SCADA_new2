@@ -1,0 +1,33 @@
+.EventViewer {
+    width: 99%;
+    background-color: #f8f9fa; /* Example background color */
+    /* padding: 10px 0; */
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for depth */
+    margin-top:20px;
+    
+  }
+  
+  .footer-table {
+    width: 100%; 
+    border-collapse: collapse; /* Remove space between borders */
+    margin: 0 auto; /* Centers the table in the footer */
+  }
+  
+  .footer-table th, .footer-table td {
+    border: 2px solid #0294A5; /* Excel-like grid lines */
+    text-align: left;
+    font-family: 'SF-UI', Arial, sans-serif;
+    padding: 8px;
+  }
+  
+  .footer-table th {
+    background-color: #e7e7e7; /* Header background */
+    padding-top:10px;
+  }
+  .col-id { width: 2%; }
+  .col-timestamp { width: 7%; }
+  .col-description { width: 15%; }
+  .col-address { width: 5%; }
+  .col-value {width: 3%; }
+  .col-topic {width: 7%; }
+  

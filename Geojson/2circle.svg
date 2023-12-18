@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   sodipodi:docname="2circle.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="0.50214333"
+     inkscape:cx="141.39389"
+     inkscape:cy="420.19875"
+     inkscape:window-width="1680"
+     inkscape:window-height="1050"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="124.10877,173.87178"
+       orientation="1,0"
+       id="guide403"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="73.32906,187.8132"
+       orientation="1,0"
+       id="guide405"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:none;fill-opacity:0.729412;stroke:#0000ff;stroke-width:6.133;stroke-dasharray:none;paint-order:fill markers stroke;stroke-dashoffset:0"
+       id="path379"
+       cx="98.71859"
+       cy="133.49692"
+       rx="25.273687"
+       ry="24.193615" />
+    <ellipse
+       style="fill:none;fill-opacity:0.729412;stroke:#0000ff;stroke-width:6.333;stroke-dasharray:none;paint-order:fill markers stroke;stroke-dashoffset:0"
+       id="path379-0"
+       cx="99.247757"
+       cy="160.71474"
+       rx="25.273687"
+       ry="24.193615" />
+    <path
+       style="fill:#0000ff;fill-opacity:0.729412;stroke:#0000ff;stroke-width:6.578;stroke-dasharray:none;stroke-dashoffset:0;paint-order:fill markers stroke"
+       d="m 98.199898,44.693319 -3e-6,65.551751"
+       id="path461" />
+    <path
+       style="fill:#0000ff;fill-opacity:0.729412;stroke:#0000ff;stroke-width:6.57818;stroke-dasharray:none;stroke-dashoffset:0;paint-order:fill markers stroke"
+       d="m 99.24809,184.53463 -1e-5,65.55176"
+       id="path461-3" />
+  </g>
+</svg>

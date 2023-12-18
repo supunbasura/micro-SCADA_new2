@@ -9,18 +9,50 @@
       href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </head>
-  <body>
 
+  <body>
+    <nav class="navbar">
+      <div class="logo-section left-logo">
+        <img src="CEB.png" alt="Systems Logo" class="logo" />
+      </div>
+      <a href="http://127.0.0.1:5501/">GIS Network</a>
+      <a href="#" id="polygonsButton_02">Regions</a>
+      <a href="/event-viewer">Event Viewer</a>
+      <a href="/alarm-viewer">Alarm Viewer</a>
+      <a href="/history-trends">History / Trends</a>
+      <a href="/Reports">Reports</a>
+      <a href="/login">Login</a>
+      <a href="/">Exit</a>
+    
+      <div class="logo-section right-logo">
+        <img src="Company_logo.png" alt="CEB Logo" class="logo" />
+      </div>
+    </nav>
     <div id="legend" class="map-overlay">
       <div class="legend-title">Legend</div>
+
       <div class="legend-item">
-          <div class="legend-marker"></div>
+        <svg style="margin-bottom:5px;margin-right:10px;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-triangle-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z"/>
+        </svg>
+        <div class="legend-text">LBS</div>
+      </div>
+
+      <div class="legend-item">
+          <!-- <div class="legend-marker"></div> -->
+          <!-- <i class="fa-sharp fa-solid fa-triangle" ></i> -->
+          <img src="2circle.svg" alt="Systems Logo" style="width: 40px; margin-left:-10px"/>
           <div class="legend-text">LBS</div>
       </div>
-      <!-- Additional legend items can be added here -->
-  </div>
-  
+      <div class="legend-item">
+        <!-- <div class="legend-marker"></div> -->
+        <i class="fas fa-map-marker-alt" style="font-size:20px;color:red;"></i>
+        <div class="legend-text">LBS</div>
+    </div>
+    </div>
+
     <div id="sidebar">
       <h2>Navigation</h2>
       <button class="layer-button" id="polygonsButton">
@@ -32,19 +64,24 @@
       <button class="layer-button" id="GenerationButton">
         Generation
       </button>
-      <button class="layer-button" id="homeButton">
-        Home
-      </button>
+
 
       <!-- Distribution Line Section -->
       <div id="distributionLineSection" style="display: none">
         <h2>Distribution Lines</h2>
         <button class="layer-button" id="line33kVButton">33 kV Line</button>
         <button class="layer-button" id="line11kVButton">11 kV Line</button>
+        <button class="layer-button" id="line11kVButton">LBS</button>
+        <button class="layer-button" id="line11kVButton">AR</button>
+        <button class="layer-button" id="line11kVButton">Distribution TF</button>
+        <button class="layer-button" id="line11kVButton">Primary Substations</button>
       </div>
 
       <button class="back-button" id="backButton" style="display: none">
         Back
+      </button>
+      <button class="layer-button_home" id="homeButton">
+        Home
       </button>
     </div>
 

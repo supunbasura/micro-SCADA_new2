@@ -471,7 +471,7 @@ document
     const confirmed = window.confirm('Are you sure you want to navigate to the SCADA home page?');
     
     if (confirmed) {
-      window.location.href = 'http://localhost:3000/';
+      window.location.href = 'http://127.0.0.1:5501/';
     }
   });
   

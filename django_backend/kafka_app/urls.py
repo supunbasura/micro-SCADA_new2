@@ -7,4 +7,5 @@ urlpatterns = [
     path('api/spindication/', views.fetch_singlepointindication, name="fetch_indication"),
     path('api/Controls/', views.fetch_Controls, name="fetch_Controls"),
     path('api/fetchEvent/', views.fetch_EventViewer, name="fetch_EventViewer"),
+    path('api/Event/', views.fetch_Event, name="fetch_EventViewer"),
 ]

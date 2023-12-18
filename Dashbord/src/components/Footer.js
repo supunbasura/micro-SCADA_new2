@@ -131,7 +131,7 @@ useEffect(() => {
                     </tbody>
                 </table>
             ) : (
-                <p>No Event to display</p>
+                <p>Loading...</p>
             )}
         </div>
 

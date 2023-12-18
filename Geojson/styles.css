@@ -4,6 +4,7 @@ body {
 }
 
 #sidebar {
+  margin-top:65px;
   position: fixed;
   top: 0;
   left: 0;
@@ -21,10 +22,11 @@ body {
 #sidebar h2 {
   margin-bottom: 20px;
   font-size: 22px;
-  color: #ffcc00;
+  color: #0294A5;
 }
 
 #map {
+  margin-top:65px;
   position: absolute;
   top: 0;
   left: 250px;
@@ -48,7 +50,7 @@ body {
 }
 
 .layer-button:hover {
-  background-color: #777;
+  background-color: #0294A5;
 }
 
 .back-button {
@@ -67,7 +69,7 @@ body {
 }
 
 .back-button:hover {
-  background-color: #777;
+  background-color: #0294A5;
 }
 
 /* Styling for the popup */
@@ -88,8 +90,8 @@ body {
 }
 
 .layer-button.selected {
-  background-color: #ffcc00;
-  color: #333;
+  background-color: #017080;
+  color: #fff;
 }
 
 .triangle-marker {
@@ -102,6 +104,7 @@ body {
 }
 
 #legend {
+  margin-top:60px;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -139,4 +142,71 @@ body {
   font-size: 16px;
   color: #333;
 }
+.layer-button_home{
+  margin-top:63%;
+  margin-bottom: 10px;
+  padding: 15px;
+  height: 50px; /* Set a fixed height for all buttons */
+  line-height: 20px; /* Adjust line height to center text */
+  width: calc(80px);
+  font-size: 16px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+}
 
+
+
+
+
+
+.navbar {
+  display: grid;
+  grid-template-columns: auto repeat(8, 1fr) auto; 
+  align-items: center;
+  background-color: #5c646d;
+  padding: 0.5rem 0;
+  gap: 0.5rem; 
+}
+
+.left-logo,
+.right-logo {
+  padding: 0 1rem; /* Adjust padding for logos */
+}
+
+.logo {
+  height: 50px;
+  display: block; /* Ensures the logo takes up the full space of its container */
+}
+
+.navbar {
+  text-align: center; /* Center text in the nav link columns */
+  font-family: 'SF-UI', Arial, sans-serif;
+  font-weight: bold;
+}
+
+.navbar a {
+  display: block; /* Make the links take up the full grid cell */
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #0294A5;
+  color: #fff;
+}
+
+.active {
+  background-color: #017080;
+  color: #fff;
+}
+
+.navbar.disabled a {
+  pointer-events: none;
+  color: grey; /* or any other style to indicate it's disabled */
+}

@@ -38,7 +38,7 @@ const Navbar = () => {
       
       {renderNavLink('http://127.0.0.1:5501/', 'GIS Network')}
       {renderNavLink('/regions2', 'Regions')}
-      {renderNavLink('/event-viewer', 'Event Viewer')}
+      {renderNavLink('/EventViewer', 'Event Viewer')}
       {renderNavLink('/alarm-viewer', 'Alarm Viewer')}
       {renderNavLink('/history-trends', 'History / Trends')}
       {renderNavLink('/Reports', 'Reports')}

@@ -43,7 +43,7 @@ function HomePage() {
 function ConditionalFooter() {
   const location = useLocation();
 
-  if (location.pathname !== "/login" && location.pathname !== "/") {
+  if (location.pathname !== "/login" && location.pathname !== "/" && location.pathname !=="/EventViewer"){
     return <Footer />;
   }
 

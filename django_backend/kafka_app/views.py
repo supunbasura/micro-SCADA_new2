@@ -30,6 +30,7 @@ from datetime import datetime
 from rest_framework.decorators import api_view
 
 from .Serializers import UnionSerializer
+import pytz
 
 mqtt_thread_started = False
 
@@ -41,7 +42,10 @@ def publish_mqtt_message(request):
     Type=46
     Address=5000
     Value=request.data.get("status", 1)
-    Timestamp=datetime.now().strftime("%Y:%m:%d:%H:%M:%S")
+    sri_lanka_timezone = pytz.timezone('Asia/Colombo')
+    current_time_in_sri_lanka = datetime.now(sri_lanka_timezone)
+    Timestamp = current_time_in_sri_lanka.strftime("%Y:%m:%d:%H:%M:%S")
+    # Timestamp=datetime.now().strftime("%Y:%m:%d:%H:%M:%S")
     # Timestamp="2023:12:11:19:39:24"
     
     Type2=46
@@ -102,7 +106,24 @@ def fetch_EventViewer(request):
 
     serializer = UnionSerializer(combined, many=True)
 
-    print(serializer.data);
+    # print(serializer.data);
     return Response(serializer.data)
 
-    
+@api_view(['GET'])
+def fetch_Event(request):
+    spi_subquery = SinglePointIndication.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+    controls_subquery = Controls.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+    measurements_subquery = Measurements.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+    dpi_subquery = DoublePointIndication.objects.filter(id=OuterRef('id')).order_by('-timestamp')
+
+    spi = SinglePointIndication.objects.annotate(latest=Subquery(spi_subquery.values('timestamp')[:1]))
+    controls = Controls.objects.annotate(latest=Subquery(controls_subquery.values('timestamp')[:1]))
+    measurements = Measurements.objects.annotate(latest=Subquery(measurements_subquery.values('timestamp')[:1]))
+    dpi = DoublePointIndication.objects.annotate(latest=Subquery(dpi_subquery.values('timestamp')[:1]))
+
+    combined = spi.union(controls, measurements, dpi).order_by('-latest')[:28]
+
+    serializer = UnionSerializer(combined, many=True)
+
+    # print(serializer.data);
+    return Response(serializer.data)
