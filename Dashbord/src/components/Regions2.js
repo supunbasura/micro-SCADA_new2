@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react';
+import { useSearchParams } from 'react-router-dom';
 import MyComponent from './Test';
 import CustomIframe from './CustomIframe';
 import Frame from 'react-frame-component';
@@ -10,6 +11,9 @@ import { Regions3DataProvider } from './Regions3DataContext';
 
 
 function Regions2() {
+  const [searchParams] = useSearchParams();
+  const topicHtml = decodeURIComponent(searchParams.get('topic') || '');
+
   useEffect(() => {
     const handleWheel = (event) => {
         if (event.ctrlKey === true) {
@@ -31,7 +35,9 @@ function Regions2() {
         width="49.6%"
         height="440px"
       >
-        <Regions3/>
+        {/* <Regions3/> */}
+        <Regions3 topicHtml={topicHtml} />
+        <div>{topicHtml}</div>
       </Frame>
       <Frame
         title="Frame 2"

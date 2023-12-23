@@ -90,6 +90,47 @@ def on_message(client, userdata, message):
             # print("Data saved to TimescaleDB.")
 
             address_descriptions = {
+                1: "Group 1 Trip",
+                2: "Lockout (Any)",
+                3: "Remote Control",
+                4: "AR initiated",
+                5: "Prot initiated",
+                6: "Open (Any)",
+                7: "Open (Prot)",
+                8: "Open (0C1F)",
+                9: "Open (0C2F)",
+                10: "Open (0C3F)",
+                11: "Open (EF1F)",
+                12: "Open (EF2F)",
+                13: "Open (EF3F)",
+                14: "Open (SEFF)",
+                15: "Open(OCLL3)",
+                16: "Open(EFLL3)",
+                17: "Open(UV1)",
+                18: "Open(UV2)",
+                19: "Open(UV3)",
+                20: "Open(Remote)",
+                21: "Open(Local)",
+                23: "Closed(Any)",
+                24: "Closed(AR)",
+                25: "Closed(IO)",
+                26: "Closed(Local)",
+                27: "Prot On",
+                28: "Group2 On",
+                29: "Group3 On",
+                30: "Group4 On",
+                31: "Prot On",
+                32: "EF On",
+                33: "SEF On",
+                34: "UV On",
+                35: "CLP On",
+                36: "LL On",
+                37: "AR On",
+                38: "ABR On",
+                39: "Malfunction",
+                40: "Warning",
+                41: "OSM Disconnected",
+                42: "Dummy Control",
                 # single point
                 10000: "Panel Control position Local/ Supervisory",
                 10001: "Relay Protection Setting Group Position",
@@ -197,7 +238,39 @@ def on_message(client, userdata, message):
                 INSERT INTO {} (timeStamp,ioa,value,description,topic)
                 VALUES (%s,%s,%s,%s,%s);
             """
-
+            
+            # timestamp_cur = book_data[0]["Timestamp"] if book_data else None
+            cur_voltage = 0
+            cur_current = 0
+            cur_freq = 0
+            cur_power = 0
+            
+            for item in book_data:
+                
+                if item["Type"] == 9:
+                    if item["Address"] == 10004:
+                        cur_voltage = item["Value"]
+                    
+                    elif item["Address"] == 10005:
+                        cur_current = item["Value"]
+                        
+                    elif item["Address"] == 10000:
+                        cur_freq = item["Value"]
+                        
+                    elif item["Address"] == 10001:
+                        cur_power = item["Value"]
+            
+            
+            # Insert into the database
+            insert_query1 = """
+                INSERT INTO kafka_app_book (status, received_at, description,VOLTAGE, CURRENT, FREQ, POW,statusviewer)
+                VALUES (%s,NOW(), %s,%s,%s,%s,%s,%s);
+            """
+            cursor = connection.cursor()
+            cursor.execute(insert_query1, ("not set", "not set", cur_voltage, cur_current, cur_freq, cur_power,"not set"))
+            connection.commit()
+            print("Data saved to TimescaleDB.")
+            
             
             for data_entry in book_data:
                 if 'topic' not in data_entry or data_entry["topic"] is None:
@@ -209,7 +282,8 @@ def on_message(client, userdata, message):
                 table_name = None
                 type = data_entry.get("Type", "")
                 
-                if type == 30:
+                # if 0 <= type <= 40 and type != 9 and type != 31:
+                if type == 1:
                     table_name = 'kafka_app_singlepointindication'
                     
                 #comment           
@@ -222,7 +296,6 @@ def on_message(client, userdata, message):
                 if type == 9:
                     table_name = 'kafka_app_measurements'
                 # endcomment
-                
                 
                 
                 if table_name:

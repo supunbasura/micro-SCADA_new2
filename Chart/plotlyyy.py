@@ -65,9 +65,31 @@ def update_graph_live(n):
                              mode='lines+markers'))
 
     # Update layout
-    fig.update_layout(title='Real-time data from PostgreSQL',
-                      xaxis_title='Time',
-                      yaxis_title='Values')
+    # fig.update_layout(    title={
+    #                 'text': 'Real-time data',
+    #                 'x': 0.5,  
+    #                 'y': 0.9  
+    #                 },
+    #                   xaxis_title='Time',
+    #                   yaxis_title='Values')
+    fig.update_layout(
+    title={'text': 'Real-time Data', 'x': 0.5, 'y': 0.9, 'font': {'size': 24, 'color': 'gray'}},
+    xaxis_title='Time',
+    yaxis_title='Values',
+    plot_bgcolor='rgba(0, 0, 0, 0)',  # Transparent background
+    paper_bgcolor='rgba(0, 0, 0, 0)',  # Transparent paper
+    font=dict(family='Arial, sans-serif', size=12, color='#7f7f7f'),
+    xaxis=dict(showline=True, showgrid=False, linecolor='rgb(204, 204, 204)'),
+    yaxis=dict(showline=True, showgrid=True, gridcolor='rgb(204, 204, 204)'),
+    legend=dict(x=0, y=1, traceorder='normal', font=dict(size=12)),
+    margin=dict(l=40, r=40, t=40, b=40),
+    hovermode='closest'
+)
+
+    # Customize each trace
+    fig.update_traces(marker=dict(size=10, line=dict(width=2, color='DarkSlateGrey')),
+                  selector=dict(mode='markers'))
+
 
     return fig
 

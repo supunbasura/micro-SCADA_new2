@@ -35,9 +35,13 @@ import pytz
 mqtt_thread_started = False
 
 MQTT_TOPIC = "TestTopic"
+MQTT_TOPIC2 = "CEBSUB"
 
 @api_view(['POST'])
 def publish_mqtt_message(request):
+    
+    # Topic=request.data.get("topic", "ABC")
+    # MQTT_TOPIC = f"CEB/{Topic}"
     
     Type=46
     Address=5000
@@ -68,6 +72,8 @@ def publish_mqtt_message(request):
 
     # Use the publish_message function to publish the message
     publish_message(MQTT_TOPIC, payload)
+    publish_message(MQTT_TOPIC2, payload)
+    # publish_message(MQTT_TOPIC, payload)
 
     return JsonResponse({'redirect_url': 'http://localhost:3000/'})
 
@@ -127,3 +133,10 @@ def fetch_Event(request):
 
     # print(serializer.data);
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def fetch_single_data(request):
+    singlep = SinglePointIndication.objects.all().order_by('-timestamp')[:22]
+    data = serializers.serialize('json', singlep)
+    return JsonResponse(data, safe=False)

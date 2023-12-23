@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import SwitchOn from '../SVG/Switch_On_new2.svg';
 import SwitchOff from '../SVG/Switch_Off_new2.svg';
 
-import SwitchVisible from '../SVG/switchDefault____.svg';
+import SwitchVisible from '../SVG/switchDefault_00 P&D.svg';
 import SwitchOffVisible from '../SVG/Switch_off_10_10.svg';
 import SwitchOnVisible from '../SVG/Switch_off_01_01.svg';
 import Switch_00_visible from '../SVG/Switch_off_00_00.svg';
@@ -19,7 +19,7 @@ import '../Styling/Regions.css';
 import LastBookContext from './LastBookContext';
 import { Regions3DataContext } from './Regions3DataContext';
   
-function Regions3() {
+function Regions3({ topicHtml }) {
     const { lastBookElement } = useContext(LastBookContext);
 
 
@@ -32,6 +32,7 @@ function Regions3() {
 
     const [isSwitchedOn, setIsSwitchedOn] = useState("off");
     const [isToggling, setIsToggling] = useState(false);
+    
 
 
     //load last value of the button status
@@ -136,7 +137,7 @@ function Regions3() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ status: newStatus }),
+                body: JSON.stringify({ status: newStatus ,topic: topicHtml}),
             });
             const data = await response.json();
             if (data.status && data.status !== newStatus) {
@@ -166,43 +167,43 @@ function Regions3() {
                 console.log(item);
 
 // const { currentRphase, setcurrentRphase,currentYphase, setcurrentYphase,currentBphase, setcurrentBphase,voltageRphase, setvoltageRphase,voltageYphase, setvoltageYphase,voltageBphase, setvoltageBphase, frequency, setFrequency, ApparentPower, setApparentPower, ReactivePower, setReactivePower } = useContext(Regions3DataContext);
-                if (item.Type === 9 && item.Address === 1000) {
+                if (item.Type === 9 && item.Address === 1050) {
                     setcurrentRphase(item.Value);
                 }
-                if (item.Type === 9 && item.Address === 1001) {
+                if (item.Type === 9 && item.Address === 1051) {
                     setcurrentYphase(item.Value);
                 }
-                if (item.Type === 9 && item.Address === 1002) {
+                if (item.Type === 9 && item.Address === 1052) {
                     setcurrentBphase(item.Value);
                 }
 
-                if (item.Type === 9 && item.Address === 1003) {
+                if (item.Type === 9 && item.Address === 1053) {
                     setFrequency(item.Value);
                 }
 
-                if (item.Type === 9 && item.Address === 1004) {
+                if (item.Type === 9 && item.Address === 1054) {
                     setvoltageRphase(item.Value);
                 }
 
-                if (item.Type === 9 && item.Address === 1005) {
+                if (item.Type === 9 && item.Address === 1055) {
                     setvoltageYphase(item.Value);
                 }
 
-                if (item.Type === 9 && item.Address === 1006) {
+                if (item.Type === 9 && item.Address === 1056) {
                     setvoltageBphase(item.Value);
                 }
 
-                if (item.Type === 9 && item.Address === 1007) {
+                if (item.Type === 9 && item.Address === 1057) {
                     setApparentPower(item.Value);
                 }
-                if (item.Type === 9 && item.Address === 1008) {
+                if (item.Type === 9 && item.Address === 1058) {
                     setReactivePower(item.Value);
                 }
 
                 // Check if type is 46 and address is 5000
                 if (item.Type === 46 && item.Address === 5000) {
                     setIsSwitchedOn(item.Value);
-                    console.log("5000 value:",item.Value);
+                    console.log("statis",item.Value);
                 }
     
             });

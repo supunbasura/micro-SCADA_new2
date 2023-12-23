@@ -1,78 +1,66 @@
-import React,{useEffect} from 'react';
-// import AlarmIcon from '@material-ui/icons/Alarm';
-// import WarningIcon from '@mui/icons-material/Warning';
-const data = [
-  { id: 1, message: "VT MCB TRIP" },
-  { id: 2, message: "INDICATION CKT MCB TRIP/OFF" },
-  { id: 3, message: "MASTER TRIP RELAY K861 OPTD OPERATED" },
-  { id: 4, message: "MASTER TRIP RELAY K862 OPTD OPERATED" },
-  { id: 5, message: "BUSBAR TRIP RELAY K96 OPTD OPERATED" },
-  { id: 6, message: "TRIP CIRCUIT-1 CKT-1 UNHEALTHY" },
-  { id: 7, message: "TRIP CIRCUIT-2 CKT-2 UNHEALTHY" },
-  { id: 8, message: "CB 10152 SF6 LOW ALARM LOSS OF SF6" },
-  { id: 9, message: "CB 10152 SF6 GENERAL LOCKOUT SF6" },
-  { id: 10, message: "CB 10152 MOTOR CONTROL FAULT" },
-  { id: 11, message: "CB 10152 MOTOR RUNNING TIME SUPERVISION FAIL MCB TRIP" },
-  { id: 12, message: "CB 10152 SPRING NOT CHARGED" },
-  { id: 13, message: "CB 10152 HEATING FAULT" },
-  { id: 14, message: "CB 10152 LOCAL MODE SELECTED" },
-  { id: 15, message: "CB 30152 SPRING DISCHARGED OPERATING MECHANISM CHARGED" },
-  { id: 16, message: "CB 30152 OPERATING MECHANISM BLOCKED" },
-  { id: 17, message: "LEVER INSERTED" },
-  { id: 18, message: "SF6 LOW ALARM MONITORING SF6 UNDERPRESSURE" },
-  { id: 19, message: "DC MCB NOT TRIPPED" },
-  { id: 20, message: "86 LOCKOUT OPERATED" },
-  { id: 21, message: "TRIP CIRCUIT-1 TC-1 FAIL" },
-  { id: 22, message: "TRIP CIRCUIT-2 TC-2 FAIL" }
-];
+import React, { useState, useEffect } from 'react';
 
-const DataList = () => {
-  useEffect(() => {
-    const handleWheel = (event) => {
-        if (event.ctrlKey === true) {
-            event.preventDefault();
-        }
-    };
+function RegionAlartList() {
+    const [lastBook, setLastBook] = useState([]);
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            fetch("http://localhost:8000/api/fetch_single_data/")
+                .then(response => response.json())
+                .then(data => {
+                    let parsedData = JSON.parse(data);
+                    console.log("data", parsedData);
+                    if (parsedData.length > 0) {
+                        setLastBook(parsedData);
+                    } else {
+                        console.log("No data received");
+                    }
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }, 2000);
 
-    return () => {
-        window.removeEventListener('wheel', handleWheel, { passive: false });
-    };
-  }, []);
-  return (
-    <div style={styles.dataListContainer}>
-      {data.map((item, index) => (
-        <div key={item.id} style={{ ...styles.item, backgroundColor: index % 2 === 0 ? '#f0f0f0' : '#fff' }}>
-          {/* <AlarmIcon style={{ marginRight: '10px' }} /> */}
-          <span style={styles.text}>{item.message}</span>
+        return () => clearInterval(intervalId);
+    }, []);
+
+return (
+        <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '10px',
+            margin: '20px',
+            justifyContent: 'center'
+        }}>
+            {lastBook.map((book, index) => (
+                <div
+                    key={index}
+                    style={{
+                        backgroundColor: book.fields.value === "1" ? '#4CAF50' : 'rgba(241, 244, 243, 0.5)',
+                        color: book.fields.value === "1" ? 'white' : 'black',
+                        width: 'calc(50% - 5px)',
+                        // padding: '10px',
+                        paddingleft:'-5px',
+                        padding:'5px',
+                        boxSizing: 'border-box',
+                        borderRadius: '5px',
+                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        transition: 'transform 0.3s ease-in-out',
+                        cursor: 'pointer',
+                        textAlign: 'center'
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.fontWeight = 'bold'; 
+                  }}
+                  onMouseLeave={e => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.fontWeight = 'normal'; // revert to normal weight
+                  }}
+              >
+                    {book.fields.description}
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
-};
+    );
+}
 
-const styles = {
-  dataListContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-  item: {
-    width: '50%',
-    padding: '8px',
-    // paddingLeft: '10px',
-    marginTop:'1.5px',
-    marginBottom:'1.5px',
-    paddingLeft:'20px',
-
-    boxSizing: 'border-box',
-    borderBottom: '1px solid #ccc', 
-  },
-  text: {
-    fontSize: '14px', 
-    fontFamily: 'SF-UI, sans-serif',
-  }
-};
-
-export default DataList;
+export default RegionAlartList;

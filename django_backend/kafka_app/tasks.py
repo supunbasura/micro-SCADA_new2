@@ -29,6 +29,7 @@ def kafka_consumer():
             continue
 
         payload = message.value().decode('utf-8')
+        print("KAFKA Payload :", payload);
         
         try:
             book_data = json.loads(payload)

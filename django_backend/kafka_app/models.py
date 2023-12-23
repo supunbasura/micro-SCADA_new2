@@ -16,28 +16,28 @@ class Book(models.Model):
 class SinglePointIndication(models.Model):
     timestamp = models.CharField(max_length=50)
     ioa = models.CharField(max_length=20)
-    value = models.CharField(max_length=20)
+    value = models.CharField(max_length=50)
     description = models.CharField(default='Description')
     topic = models.CharField(default='topic')
 
 class DoublePointIndication(models.Model):
     timestamp = models.CharField(max_length=50)
     ioa = models.CharField(max_length=20)
-    value = models.CharField(max_length=20)
+    value = models.CharField(max_length=50)
     description = models.CharField(default='Description')
     topic = models.CharField(default='topic')
     
 class Controls(models.Model):
     timestamp = models.CharField(max_length=50)
     ioa = models.CharField(max_length=20)
-    value = models.CharField(max_length=20)
+    value = models.CharField(max_length=50)
     description = models.CharField(default='Description')
     topic = models.CharField(default='topic')
     
 class Measurements(models.Model):
     timestamp = models.CharField(max_length=50)
     ioa = models.CharField(max_length=20)
-    value = models.CharField(max_length=20)
+    value = models.CharField(max_length=50)
     description = models.CharField(default='Description')
     topic = models.CharField(default='topic')
 
